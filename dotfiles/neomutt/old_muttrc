@@ -1,0 +1,143 @@
+
+# Encoding
+set assumed_charset= "utf-8"
+set charset = "utf-8"
+
+# Style
+source ~/.config/neomutt/style.rc
+
+set header_cache = ~/.cache/neomutt/
+set message_cachedir = ~/.cache/neomutt/
+set tmpdir = ~/.cache/neomutt/
+set virtual_spoolfile
+set record = "+Sent"
+## Notmuch configuration
+set nm_default_uri = "notmuch:///home/.mail"
+virtual-mailboxes "Inbox" "notmuch://?query=tag:inbox"
+virtual-mailboxes "TUD" "notmuch://?query=to:*@tu-dresden.de"
+virtual-mailboxes "FSR" "notmuch://?query=to:*@ifsr.de"
+virtual-mailboxes "fsr@ifsr.de" "notmuch://?query=to:fsr@ifsr.de"
+virtual-mailboxes "All Unread Messages" "notmuch://?query=tag:unread"
+virtual-mailboxes "Archive" "notmuch://?query=tag:archive"
+virtual-mailboxes "Sent" "notmuch://?query=tag:sent"
+virtual-mailboxes "Spam" "notmuch://?query=tag:spam"
+
+macro index A "<modify-labels>+archive -unread -inbox<enter>" "Archive message"
+macro index S "<modify-labels>+spam -unread -inbox<enter>" "Mark message as spam"
+macro index c "<change-vfolder>?" "Change to vfolder overview"
+macro index \\\\ "<vfolder-from-query>" "Search mailbox"
+
+## Set of sane defaults for handling and displaying mail
+set nomark_old              # stop marking my mail as old
+set smart_wrap              # wrap words instead of cutting them half
+set reflow_text             # automatically reflow text if the mail allows it
+set menu_scroll             # scroll only a line instead of a page
+
+
+set sort_re
+set sort = reverse-threads
+set sort_aux = last-date-received
+#set editor  = 'vim -c "set fo+=aw" -c "set nosmartindent" -c "set nojs" -c "set filetype=mail" -c "normal }"'
+set editor = 'nvim'
+
+set text_flowed = yes
+set timeout = "5"
+set mail_check = "10"
+set mailcap_path = ~/.config/neomutt/mailcap
+
+set pager_stop              # Jesus Christ. Stop moving on to the next mail!
+
+## Displaying Options -> How should the UI look?
+#set index_format        = "%Z ⌈%D⌋  %-20.20F  ⌜%s⌟"    # Switch format of index
+set date_format         = "%d.%m.%y"                # use german date format for sanity reasons
+set folder_format       = '%N %4C %4s bytes %2F %2f'
+#set reply_regexp        = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+set forward_quote
+set forward_format      = "Fwd: %s"
+## h e a d e r s
+ignore *
+unignore from: to: subject: Cc:
+hdr_order From: To: Cc: Date:
+set user_agent
+
+set envelope_from = yes
+set sendmail = "msmtp"
+set use_from = yes
+set realname = "Tassilo Tanneberger"
+set reverse_name = yes
+
+## What is SPAM? Baby don't annoy me ~ annoy me, no more!
+spam "X-Spam-Status: Yes"                     "90+/SA"
+spam "X-Spam-Flag: YES"                       "90+/SA"
+spam "X-TUD-Spam-Status: Yes"                 "90+/SA"
+
+## Keep me from sending mails w/o attachments
+set abort_noattach = ask-yes
+set attach_keyword = "\\<(anhängen|angehängt|anhang|anhänge|hängt an|anhängig|attached|attachments?|anbei)\\>"
+
+
+set ispell = 'aspell -e -c'
+# Mail editing:
+set include             # the next 3 set's are to
+set edit_headers        # go right to vim and edit through that composition
+set autoedit            # window, rather than mutt giving me 21 questions
+set forward_quote
+set forward_format      = "Fwd: %s"
+
+
+## Use GPG
+source ~/.config/neomutt/gpg.rc
+set pgp_use_gpg_agent = yes
+
+## Set up S/MIME
+set crypt_use_gpgme = yes
+set crypt_autosmime = yes
+set crypt_autosign = yes
+# automatically encrypt when possible
+set crypt_opportunistic_encrypt = yes
+set crypt_replyencrypt = yes
+set crypt_replysign = yes
+set crypt_replysignencrypted = yes
+# set default key and encrypt to sel
+set smime_default_key = 0x39DDEFF5
+set smime_self_encrypt = yes
+
+# misc
+#set sort = threads
+#set sort_aux = reverse-last-date-received
+#set menu_scroll
+#set editor = nvim
+#set timeout = "5"
+#set mail_check = "10"
+#set mailcap_path = ~/.config/neomutt/mailcap
+#set date_format="%m/%d %I:%M"
+#set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
+
+#auto_view text/html
+#alternative_order text/plain text/enriched text/html
+
+#mono bold bold
+#mono underline underline
+#mono indicator reverse
+# sidebar
+#set mail_check_stats
+#set sidebar_visible               # set to "no" to disable sidebar view at startup
+#    color sidebar_new yellow default
+#    # sidebar bindings
+#    bind index J sidebar-prev          # got to previous folder in sidebar
+#    bind index K sidebar-next         # got to next folder in sidebar
+#    bind index <space> sidebar-open         # open selected folder from sidebar
+
+# Mail editing:
+#set include             # the next 3 set's are to
+#set edit_headers        # go right to vim and edit through that composition
+#set autoedit            # window, rather than mutt giving me 21 questions
+#set forward_quote
+#set forward_format      = "Fwd: %s"
+
+#source ~/.config/neomutt/accounts/tassilo.tanneberger@tu-dresden.de
+
+

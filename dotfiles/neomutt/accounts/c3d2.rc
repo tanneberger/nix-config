@@ -1,0 +1,25 @@
+## Account settings
+set from = revol-xut@mail.c3d2.de
+set realname = "revol-xut"
+
+set mbox_type = Maildir
+set folder = "~/.mail/c3d2"
+
+set sendmail = "msmtp -a c3d2"
+
+# cache settings
+set header_cache = "~/.cache/mutt/c3d2/header_cache"
+set message_cachedir = "~/.cache/mutt/c3d2/message_cache"
+
+# mailbox settings
+set spoolfile = +Inbox
+set postponed = +Drafts
+set record = +Sent
+set trash = +Trash
+
+set signature = "~/.config/neomutt/signatures/revol-xut@mail.c3d2.de"
+
+# synchronization settings ['s' to sync]
+macro index S "<shell-escape>mbsync -V ifsr <enter>" "sync email"
+
+

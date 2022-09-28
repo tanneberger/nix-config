@@ -1,0 +1,25 @@
+## Account settings
+set from = tassilo.tanneberger@ifsr.de
+set realname = "Tassilo Tanneberger"
+
+set mbox_type = Maildir
+set folder = "~/.mail/ifsr"
+
+set sendmail = "msmtp -a ifsr"
+
+# cache settings
+set header_cache = "~/.cache/mutt/tu-dresden/header_cache"
+set message_cachedir = "~/.cache/mutt/tu-dresden/message_cache"
+
+# mailbox settings
+set spoolfile = +Inbox
+set postponed = +Drafts
+set record = +Sent
+set trash = +Trash
+
+set signature = "~/.config/neomutt/signatures/tassilo.tanneberger@ifsr.de"
+
+# synchronization settings ['s' to sync]
+macro index S "<shell-escape>mbsync -V ifsr <enter>" "sync email"
+
+

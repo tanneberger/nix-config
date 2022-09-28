@@ -1,0 +1,28 @@
+# Style
+source ~/.config/neomutt/style.rc
+source ~/.config/neomutt/sidebar.muttrc
+
+# Handeling of cringe non text based formats
+auto_view text/html
+set mailcap_path = ~/.config/neomutt/mailcap
+
+# Encrption of signing of emails
+source ~/.config/neomutt/gpg.rc
+set pgp_use_gpg_agent = yes
+
+# navigation settings
+bind index,pager g noop
+macro index,pager gi "<change-folder>=Inbox<enter>" "go to inbox"
+macro index,pager gs "<change-folder>=Sent<enter>" "go to sent"
+macro index,pager gd "<change-folder>=Drafts<enter>" "go to drafts"
+macro index,pager gt "<change-folder>=Trash<enter>" "go to trash"
+
+# Account settings
+# Tu-dresden as default
+source ~/.config/neomutt/accounts/tu-dresden.rc
+
+# Changing Account Macros
+bind index,pager a noop
+macro index,pager a1 '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/tu-dresden.rc<enter><change-folder>!<enter>;<check-stats>' "switch to tu-dresden"
+macro index,pager a2 '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/ifsr.rc<enter><change-folder>!<enter>;<check-stats>' "switch to ifsr"
+macro index,pager a3 '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/c3d2.rc<enter><change-folder>!<enter>;<check-stats>' "switch to ccc"

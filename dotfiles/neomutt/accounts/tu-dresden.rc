@@ -1,0 +1,26 @@
+## Account settings
+set from = tassilo.tanneberger@tu-dresden.de
+set realname = "Tassilo Tanneberger"
+
+set mbox_type = Maildir
+set folder = "~/.mail/tu-dresden"
+
+set sendmail = "msmtp -a tu-dresden"
+
+# cache settings
+set header_cache = "~/.cache/mutt/tu-dresden/header_cache"
+set message_cachedir = "~/.cache/mutt/tu-dresden/message_cache"
+
+# mailbox settings
+set spoolfile = +Inbox
+set postponed = +Drafts
+set record = +Sent
+set trash = +Trash
+
+set signature = "~/.config/neomutt/signatures/tassilo.tanneberger@tu-dresden.de"
+
+# synchronization settings ['s' to sync]
+macro index S "<shell-escape>mbsync -V tu-dresden <enter>" "sync email"
+
+set smime_default_key = 0xE905AE9F
+

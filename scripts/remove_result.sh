@@ -1,0 +1,1 @@
+sudo nix-store --gc --print-roots | command grep -E -v -e "^(/nix/var|/run/\w+-system|\{(memory|temp)|/proc/)" -e "flake-registry.json$"| awk '{print $1}' | xargs -I{} bash -c 'echo "Removing {}..."; rm -f {}'

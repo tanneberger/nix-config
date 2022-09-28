@@ -1,0 +1,100 @@
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Automatically delete messages on either side if they are found deleted on the other.
+Expunge Both
+# Save the synchronization state files in the relevant directory
+SyncState *
+ 
+# ---- TU Dresden ----
+IMAPAccount tu-dresden
+Host msx.tu-dresden.de
+User tata551d
+PassCmd "pass tu-dresden/tassilo.tanneberger@tu-dresden.de"
+SSLType IMAPS
+AuthMechs LOGIN
+PipelineDepth 1
+
+IMAPStore tu-dresden-remote
+Account tu-dresden
+
+MaildirStore tu-dresden-local
+Subfolders Verbatim
+Path ~/.mail/tu-dresden/
+Inbox ~/.mail/tu-dresden/Inbox
+
+Channel tu-dresden
+Far :tu-dresden-remote:
+Near :tu-dresden-local:Inbox
+#Patterns INBOX
+ 
+Channel tu-dresden-sent
+Far :tu-dresden-remote:"Sent"
+Near :tu-dresden-local:Sent
+ 
+Channel tu-dresden-trash
+Far :tu-dresden-remote:"Trash"
+Near :tu-dresden-local:Trash
+
+Channel tu-dresden-archive
+Far :tu-dresden-remote:"Archives"
+Near :tu-dresden-local:All
+ 
+# Automatically create missing mailboxes, both locally and on the server
+#Create Both
+# Automatically delete messages on either side if they are found deleted on the other.
+#Expunge Both
+# Save the synchronization state files in the relevant directory
+#SyncState *
+ 
+Group tu-dresden
+Channel tu-dresden-default
+Channel tu-dresden-trash
+Channel tu-dresden-archive
+Channel tu-dresden-sent
+
+# ---- ifsr ----
+IMAPAccount ifsr
+Host mail.ifsr.de
+User tassilo.tanneberger
+PassCmd "pass dfn/tassilo.tanneberger@ifsr.de"
+SSLType IMAPS
+AuthMechs LOGIN
+# because exchange apparently can't handle parallel accesses:
+PipelineDepth 1
+
+IMAPStore ifsr-remote
+Account ifsr
+
+MaildirStore ifsr-local
+Subfolders Verbatim
+Path ~/.mail/ifsr/
+Inbox ~/.mail/ifsr/Inbox
+
+Channel ifsr-default
+Far :ifsr-remote:
+Near :ifsr-local:Inbox
+#Patterns INBOX
+ 
+Channel ifsr-sent
+Far :ifsr-remote:"Sent"
+Near  :ifsr-local:Sent
+ 
+Channel ifsr-trash
+Far :ifsr-remote:"Trash"
+Near  :ifsr-local:Trash
+
+Channel ifsr-archive
+Far :ifsr-remote:"Archives"
+Near  :ifsr-local:All
+ 
+Channel ifsr-junk
+Far :ifsr-remote:"Junk"
+Near  :ifsr-local:Junk
+ 
+Group ifsr
+Channel ifsr-default
+Channel ifsr-trash
+Channel ifsr-archive
+Channel ifsr-sent
+Channel ifsr-junk
+
