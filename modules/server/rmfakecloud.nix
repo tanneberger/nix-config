@@ -19,12 +19,11 @@ let
       cp -r ./ui/* $out/
     '';
   };
+
   frontend = pkgs.mkYarnPackage rec {
     pname = "rmfakecloud-frontend";
     version = "0.0.8";
-    
     src = source;
-
   };
 
 in {

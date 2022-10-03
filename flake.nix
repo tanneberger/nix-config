@@ -25,6 +25,7 @@
     {
 
       packages."aarch64-linux".einstein = self.nixosConfigurations.einstein.config.system.build.sdImage;
+      packages."x86_64-linux".schroedinger = self.nixosConfigurations.schroedinger.config.system.build.vm;
 
       nixosConfigurations = {
         kirchhoff = buildSystem rec {
