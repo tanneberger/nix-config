@@ -24,6 +24,12 @@ let
     pname = "rmfakecloud-frontend";
     version = "0.0.8";
     src = source;
+    # yarn build wants to create a .cache dir in the node_modules folder, which fails with the standard yarn2nix directory management
+    # use a simplistic alternative
+    configurePhase = "cp -r $node_modules node_modules && chmod +w node_modules";
+    buildPhase = ''yarn build --offline'';
+    installPhase = ''mv build $out'';
+    distPhase = "true";
   };
 
 in {
@@ -45,7 +51,7 @@ in {
               proxyPass = "http://127.0.0.1:${toString config.services.rmfakecloud.port}/";
               proxyWebsockets = true;
             };
-            "~.html" = {
+            "*.html" = {
               root = "${frontend}/";
             };
           };

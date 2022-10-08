@@ -12,7 +12,7 @@
     ];
 
   sops.defaultSopsFile = ../../secrets/schroedinger.yaml;
-
+  nix.settings.cores = 1;
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
@@ -29,7 +29,14 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
-
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "8192";
+    }
+  ];
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
