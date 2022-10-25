@@ -119,7 +119,7 @@
             ./hosts/schroedinger/configuration.nix
             ./modules/server/base.nix
             ./modules/server/nextcloud.nix
-            ./modules/server/gitea.nix
+            #./modules/server/gitea.nix
             ./modules/server/rmfakecloud.nix
             sops-nix.nixosModules.sops
           ];
