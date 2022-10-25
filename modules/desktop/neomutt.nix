@@ -21,6 +21,63 @@
 
   accounts.email = {
     accounts = {
+      dd-ix = {
+        address = "tassilo@dd-ix.net";
+        #gpg = {
+        #  key = "91EBE87016391323642A6803B966009D57E69CC6";
+        #  signByDefault = true;
+        #};
+        imap = {
+          host = "imap.migadu.com";
+          port = 993;
+        };
+        mbsync = {
+          enable = true;
+          create = "maildir";
+          extraConfig = {
+            account = {
+              AuthMechs = "Login";
+            };
+            channel = { };
+            local = { };
+            remote = { };
+          };
+          subFolders = "Verbatim";
+        };
+        msmtp.enable = true;
+        notmuch.enable = true;
+
+        neomutt = {
+          enable = true;
+          extraMailboxes = [ "Sent" "Trash" ];
+          mailboxName = "dd-ix";
+          extraConfig = ''
+            source ${../../dotfiles/neomutt/style.rc}
+            set mailcap_path="~/.config/neomutt/mailcap"
+            bind attach <return> view-mailcap
+          '';
+        };
+        realName = "Tassilo Tanneberger";
+        signature = {
+          text = ''
+            best regards
+            Tassilo Tanneberger
+            --------------------------------
+            Professional Cable Spagetti Chef
+
+            01062 Dresden
+            E-Mail: tassilo@dd-ix.net
+            --------------------------------
+          '';
+          showSignature = "append";
+        };
+        passwordCommand = "pass email/tassilo@dd-ix.net | head -1";
+        smtp = {
+          host = "smtp.migadu.com";
+          port = 465;
+        };
+        userName = "tassilo@dd-ix.net";
+      };
       tu-dresden = {
         address = "tassilo.tanneberger@tu-dresden.de";
         gpg = {

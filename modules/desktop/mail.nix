@@ -1,6 +1,32 @@
 { pkgs, config, lib, ... }:
 let
   custom-mbsync-config = (pkgs.writeScriptBin "mbsync" ''
+    IMAPAccount dd-ix
+    AuthMechs Login
+    CertificateFile /etc/ssl/certs/ca-certificates.crt
+    Host imap.migadu.net
+    PassCmd "cat ${config.sops.secrets.dd-ix-mail.path}"
+    Port 993
+    SSLType IMAPS
+    User tassilo@dd-ix.net
+
+    IMAPStore dd-ix-remote
+    Account dd-ix
+
+    MaildirStore dd-ix-local
+    Inbox /home/revol-xut/Maildir/dd-ix/Inbox
+    Path /home/revol-xut/Maildir/dd-ix/
+    SubFolders Verbatim
+
+    Channel dd-ix
+    Create Near
+    Expunge None
+    Far :dd-ix-remote:
+    Near :dd-ix-local:
+    Patterns *
+    Remove None
+    SyncState *
+
     IMAPAccount ifsr
     AuthMechs Login
     CertificateFile /etc/ssl/certs/ca-certificates.crt
@@ -52,6 +78,7 @@ let
     Patterns *
     Remove None
     SyncState *
+
   '');
 in
 {
@@ -63,6 +90,9 @@ in
       owner = "revol-xut";
     };
     "c3d2-mail" = {
+      owner = "revol-xut";
+    };
+    "dd-ix-mail" = {
       owner = "revol-xut";
     };
   };
@@ -124,6 +154,14 @@ in
         from = "revol-xut@mail.c3d2.de";
         user = "revol-xut";
         passwordeval = "pass email/revol-xut@mail.c3d2.de | head -1";
+      };
+      dd-ix = {
+        auth = true;
+        host = "smtp.migadu.com";
+        port = 465;
+        from = "tassilo@dd-ix.net";
+        user = "tassilo@dd-ix.net";
+        passwordeval = "pass email/tassilo@dd-ix.net | head -1";
       };
     };
   };

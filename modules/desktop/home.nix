@@ -123,6 +123,13 @@
           user = "root";
           forwardAgent = true;
         };
+        "latte" = {
+          hostname = "10.3.142.2";
+          user = "root";
+          extraOptions = {
+            "ProxyJump" = "root@espresso.ascii.coffee";
+          };
+        };
         "kaki" = {
           hostname = "kaki.ifsr.de";
           user = "root";

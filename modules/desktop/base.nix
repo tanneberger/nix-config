@@ -1,7 +1,7 @@
 { config, pkgs, lib, options, ... }:
 {
   imports = [
-    ./docker.nix
+    #./docker.nix
     ./certs.nix
     ./dvb-dump-nfs-automount.nix
     ./pipewire.nix

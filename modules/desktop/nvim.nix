@@ -67,6 +67,9 @@ in
         -- nvim_lsp object
         local nvim_lsp = require'lspconfig'
 
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
         local opts = {
             tools = {
                 runnables = {
@@ -74,9 +77,7 @@ in
                 },
                 inlay_hints = {
                     auto = true,
-                    show_parameter_hints = false,
-                    parameter_hints_prefix = "",
-                    other_hints_prefix = "",
+                    show_parameter_hints = true,
                 },
             },
 
@@ -86,6 +87,7 @@ in
             server = {
                 -- on_attach is a callback called when the language server attachs to the buffer
                 -- on_attach = on_attach,
+                capabilities = capabilities,
                 settings = {
                     -- to enable rust-analyzer settings visit:
                     -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
@@ -94,6 +96,15 @@ in
                         checkOnSave = {
                             command = "clippy"
                         },
+                        inlayHints = {
+                          maxLength = nil,
+                          closureReturnTypeHints = true,
+                          reborrowHints = true,
+                          lifetimeElisionHints = {
+                              enable = "skip_trivial", -- never, skip_trivial, always
+                              useParameterNames = true,
+                          }
+                       }
                     }
                 }
             },
