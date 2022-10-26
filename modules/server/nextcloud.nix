@@ -19,7 +19,7 @@
     enable = true;
     hostName = "cloud.tassilo-tanneberger.de";
     https = true;
-    package = pkgs.nextcloud24;
+    package = pkgs.nextcloud25;
     config = {
       dbtype = "pgsql";
       dbname = "nextcloud";

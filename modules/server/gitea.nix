@@ -3,7 +3,7 @@
   services = {
     gitea = {
       enable = true;
-      domain = "gitea.tassilo-tanneberger.de";
+      domain = "git.tassilo-tanneberger.de";
       database = {
         user = "gitea";
         type = "postgres";
@@ -17,20 +17,21 @@
           DISABLE_REGISTRATION = true;
         };
       };
-      httpPort = 8081;
+      rootUrl = "https://git.tassilo-tanneberger.de";
+      httpPort = 8082;
     };
     postgresql = {
       enable = true;
     };
     nginx = {
       enable = true;
-      virtualHosts."gitea.tassilo-tanneberger.de" = {
+      virtualHosts."git.tassilo-tanneberger.de" = {
         forceSSL = true;
         enableACME = true;
         http2 = true;
         locations = {
           "/" = {
-            proxyPass = "https://127.0.0.1:${toString config.services.gitea.httpPort}/";
+            proxyPass = "http://127.0.0.1:${toString config.services.gitea.httpPort}/";
             proxyWebsockets = true;
           };
         };
