@@ -11,6 +11,9 @@
     "wg-dvb-seckey" = {
       owner = config.users.users.systemd-network.name;
     };
+    "wg-hole-seckey" = {
+      owner = config.users.users.systemd-network.name;
+    };
   };
 
   networking = {
@@ -23,10 +26,7 @@
     useNetworkd = true;
 
     wireguard.enable = true;
-    #wireless = {
-    #  enable = true;
-    #  userControlled.enable = true;
-    #};
+
     wireless.iwd = {
       enable = true;
     };
@@ -117,6 +117,39 @@
         { routeConfig = { Gateway = "10.13.37.1"; Destination = "10.13.37.0/24"; }; }
       ];
     };
+
+    # shithole
+    netdevs."40-wg-hole" = {
+      netdevConfig = {
+        Kind = "wireguard";
+        Name = "wg-hole";
+        Description = "hole enterprise network";
+      };
+      wireguardConfig = {
+        PrivateKeyFile = config.sops.secrets."wg-hole-seckey".path;
+      };
+      wireguardPeers = [
+        {
+          wireguardPeerConfig = {
+            PublicKey = "WR3vczOpFNXm7LvQ+TBtajLsL+gKdwuiTUYUf8xm1Hg=";
+            Endpoint = "88.198.121.105:51820";
+            AllowedIPs = [ "10.1.1.0/24" ];
+            PersistentKeepalive = 25;
+          };
+        }
+      ];
+    };
+    networks."40-wg-hole" = {
+      matchConfig.Name = "wg-hole";
+      networkConfig = {
+        Address = "10.1.1.2/24";
+        IPv6AcceptRA = true;
+      };
+      routes = [
+        { routeConfig = { Gateway = "10.13.37.1"; Destination = "10.13.37.0/24"; }; }
+      ];
+    };
+
     # zentralwerk
     netdevs."10-wg-zentralwerk" = {
       netdevConfig = {
@@ -165,59 +198,5 @@
         }
       ];
     };
-
-    /*
-      # zentralwerk vpn
-      netdevs."10-wg-vpn-zentralwerk" = {
-      enable = true;
-      netdevConfig = {
-        Kind = "wireguard";
-        Name = "wg-vpn-zentralwerk";
-        Description = "Tunnel to the best basement in Dresden";
-      };
-      wireguardConfig = {
-        PrivateKeyFile = config.sops.secrets."wg-zw-seckey".path;
-      };
-      wireguardPeers = [
-        {
-          wireguardPeerConfig = {
-            PublicKey = "PG2VD0EB+Oi+U5/uVMUdO5MFzn59fAck6hz8GUyLMRo=";
-            Endpoint = "81.201.149.152:1337";
-            AllowedIPs = [ "172.20.72.0/21" "172.22.90.0/24" ];
-            PersistentKeepalive = 25;
-          };
-        }
-      ];
-      };
-      networks."10-wg-vpn-zentralwerk" = {
-      enable = false;
-      matchConfig.Name = "wg-vpn-zentralwerk";
-      networkConfig = {
-        Address = "172.20.76.227/21";
-        IPv6AcceptRA = true;
-        DNS = "172.20.73.8";
-        #gateway = "vpn-gw.vpn.zentralwerk.org";
-        Domains = [
-          "~c3d2.de"
-          "~zentralwerk.org"
-        ];
-      };
-
-      routes = [
-        {
-          routeConfig = {
-            Gateway = "172.20.72.1";
-            Destination = "172.20.72.0/21";
-          };
-        }
-        {
-          routeConfig = {
-            Gateway = "172.20.72.1";
-            Destination = "172.20.90.0/24";
-          };
-        }
-      ];
-      };
-      */
   };
 }
