@@ -103,7 +103,7 @@
             ./hosts/pulsebert/configuration.nix
             ./modules/server/base.nix
             ./modules/server/audio-server.nix
-            ./modules/server/clock.nix
+            #./modules/server/clock.nix
 
             sops-nix.nixosModules.sops
             {

@@ -17,7 +17,6 @@
     "steam"
     "steam-original"
     "clion"
-    "android-studio-stable"
   ];
 
   boot = {
@@ -141,11 +140,6 @@
     jetbrains.clion
     jetbrains.pycharm-community
 
-    android-tools
-    android-studio
-    vimPlugins.vim-android
-    vimPlugins.vim-flutter
-    flutter
   ];
 
   hardware = {
