@@ -1,4 +1,9 @@
 { pkgs, config, lib, ... }: {
+  sops.secrets = {
+    "wg-hole-seckey" = {
+      owner = config.users.users.systemd-network.name;
+    };
+  };
 
   networking = {
     hostName = "schroedinger";
@@ -34,9 +39,9 @@
       networkConfig = {
         DHCP = "yes";
         IPv6AcceptRA = true;
-        Mode = "active-backup";
-        PrimaryReselectPolicy = "always";
-        MIIMonitorSec = "1s";
+        #Mode = "active-backup";
+        #PrimaryReselectPolicy = "always";
+        #MIIMonitorSec = "1s";
       };
     };
   };
