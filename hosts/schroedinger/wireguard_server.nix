@@ -22,7 +22,7 @@ in
           # kirchhof
           wireguardPeerConfig = {
             PublicKey = "WR3vczOpFNXm7LvQ+TBtajLsL+gKdwuiTUYUf8xm1Hg=";
-            AllowedIPs = [ "10.1.1.0/24" ];
+            AllowedIPs = [ "10.1.1.2/24" ];
             Endpoint = [ "88.198.121.105:51820" ];
             PersistentKeepalive = 25;
           };
@@ -34,6 +34,15 @@ in
       networkConfig = {
         Address = "10.1.1.1/24";
       };
+      /*wireguardPeers = [
+        {
+          wireguardPeerConfig = {
+            PublicKey = "";
+            AllowedIPs = [ "${x.config.deployment-dvb.net.wg.addr4}/32" ];
+            PersistentKeepalive = keepalive;
+          };
+        }
+      ];*/
     };
   };
 }
