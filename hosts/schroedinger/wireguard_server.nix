@@ -21,7 +21,7 @@ in
         {
           # kirchhof
           wireguardPeerConfig = {
-            PublicKey = "WR3vczOpFNXm7LvQ+TBtajLsL+gKdwuiTUYUf8xm1Hg=";
+            PublicKey = "LtAZ8Zmpdbfayg8bIfocWE0jjgHVaTxlGixWlUzW61o=";
             AllowedIPs = [ "10.1.1.2/24" ];
             Endpoint = [ "88.198.121.105:51820" ];
             PersistentKeepalive = 25;
