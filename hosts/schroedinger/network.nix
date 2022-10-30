@@ -30,9 +30,6 @@
 
   systemd.network = {
     enable = true;
-
-    # wait-online.ignoredInterfaces = [ "wlan0" "enp53s0" ];
-
     # Interfaces on the machine
     networks."10-ether-bond" = {
       matchConfig.Name = "enp1s0";

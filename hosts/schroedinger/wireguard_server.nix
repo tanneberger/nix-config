@@ -16,14 +16,14 @@ in
       };
       wireguardConfig = {
         PrivateKeyFile = config.sops.secrets."wg-hole-seckey".path;
+        ListenPort = port;
       };
       wireguardPeers = [
         {
           # kirchhof
           wireguardPeerConfig = {
             PublicKey = "LtAZ8Zmpdbfayg8bIfocWE0jjgHVaTxlGixWlUzW61o=";
-            AllowedIPs = [ "10.1.1.2/24" ];
-            Endpoint = [ "88.198.121.105:51820" ];
+            AllowedIPs = [ "10.66.66.10/32" ];
             PersistentKeepalive = 25;
           };
         }
@@ -32,17 +32,9 @@ in
     networks."hole" = {
       matchConfig.Name = "hole";
       networkConfig = {
-        Address = "10.1.1.1/24";
+        Address = "10.66.66.1/24";
+        IPForward = "ipv4";
       };
-      /*wireguardPeers = [
-        {
-          wireguardPeerConfig = {
-            PublicKey = "";
-            AllowedIPs = [ "${x.config.deployment-dvb.net.wg.addr4}/32" ];
-            PersistentKeepalive = keepalive;
-          };
-        }
-      ];*/
     };
   };
 }
