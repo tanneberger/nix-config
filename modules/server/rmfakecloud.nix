@@ -1,4 +1,4 @@
-{ pkgs, config, lib, mkYarnPackage, ... }: 
+{ pkgs, config, lib, mkYarnPackage, ... }:
 let
 
 
@@ -32,7 +32,8 @@ let
     distPhase = "true";
   };
 
-in {
+in
+{
   services = {
     rmfakecloud = {
       enable = true;
