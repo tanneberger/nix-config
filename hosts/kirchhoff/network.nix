@@ -119,7 +119,7 @@
     };
 
     # shithole
-    netdevs."40-wg-hole" = {
+    netdevs."10-wg-hole" = {
       netdevConfig = {
         Kind = "wireguard";
         Name = "wg-hole";
@@ -133,20 +133,20 @@
           wireguardPeerConfig = {
             PublicKey = "WR3vczOpFNXm7LvQ+TBtajLsL+gKdwuiTUYUf8xm1Hg=";
             Endpoint = "88.198.121.105:51820";
-            AllowedIPs = [ "10.1.1.0/24" ];
+            AllowedIPs = [ "10.66.66.0/24" ];
             PersistentKeepalive = 25;
           };
         }
       ];
     };
-    networks."40-wg-hole" = {
+    networks."10-wg-hole" = {
       matchConfig.Name = "wg-hole";
       networkConfig = {
-        Address = "10.1.1.2/24";
+        Address = "10.66.66.10/24";
         IPv6AcceptRA = true;
       };
       routes = [
-        { routeConfig = { Gateway = "10.13.37.1"; Destination = "10.13.37.0/24"; }; }
+        { routeConfig = { Gateway = "10.66.66.1"; Destination = "10.66.66.1/24"; }; }
       ];
     };
 

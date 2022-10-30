@@ -131,6 +131,7 @@
     emacs
 
     termusic # nice music player
+    nix-output-monitor # fancy output  for nix build
 
     # different common fonts for icons 
     dejavu_fonts

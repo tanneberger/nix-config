@@ -23,7 +23,7 @@
       buildSystem = nixpkgs.lib.nixosSystem;
     in
     {
-
+      packages."x86_64-linux".default = self.packages."aarch64-linux".einstein;
       packages."aarch64-linux".einstein = self.nixosConfigurations.einstein.config.system.build.sdImage;
       packages."x86_64-linux".schroedinger = self.nixosConfigurations.schroedinger.config.system.build.vm;
 

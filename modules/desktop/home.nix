@@ -74,6 +74,9 @@
     dig # tool for debugging dns 
     mtr # networking diagnostics
     ipcalc # calculating ip addresses
+    nmap # our favorite port scanner
+    ethtool # get information about link
+    arp-scan # get layer 1 information
 
     pciutils # checking connected pcidevices
     usbutils # lsusb
