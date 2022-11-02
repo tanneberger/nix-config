@@ -100,7 +100,7 @@
           system = "aarch64-linux";
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-            ./hosts/pulsebert/configuration.nix
+            ./hosts/einstein/configuration.nix
             ./modules/server/base.nix
             ./modules/server/audio-server.nix
             #./modules/server/clock.nix

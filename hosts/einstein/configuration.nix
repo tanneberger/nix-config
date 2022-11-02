@@ -2,6 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./network.nix
   ];
 
   boot = {
@@ -20,15 +21,6 @@
 
   time.timeZone = "Europe/Berlin";
 
-  networking = {
-    hostName = "pulsebert"; # Define your hostname.
-
-    useDHCP = false;
-    interfaces.eth0.useDHCP = true;
-    interfaces.wlan0.useDHCP = true;
-    firewall.enable = false;
-  };
-
   programs.tmux.enable = true;
 
   # Do not log to flash:
@@ -41,6 +33,6 @@
     wheelNeedsPassword = false;
   };
 
-  system.stateVersion = "21.05";
+  system.stateVersion = "22.05";
 }
 

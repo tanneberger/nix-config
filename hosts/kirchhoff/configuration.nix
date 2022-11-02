@@ -48,6 +48,13 @@
       builders-use-substitutes = true
     '';
   };
+
+  security.rtkit.enable = true;
+
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.package = pkgs.bluezFull;
+  services.blueman.enable = true;
+
   hardware.opengl.extraPackages = with pkgs; [
     amdvlk
   ];
@@ -79,9 +86,6 @@
   #services.thinkfan = {
   #  enable = true;
   #};
-
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
 
   services.zfs = {
     autoSnapshot = {
