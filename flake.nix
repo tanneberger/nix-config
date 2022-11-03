@@ -122,6 +122,7 @@
             ./modules/server/nextcloud.nix
             ./modules/server/gitea.nix
             ./modules/server/rmfakecloud.nix
+            ./modules/server/mail.nix
             simple-nixos-mailserver.nixosModule
             sops-nix.nixosModules.sops
           ];
