@@ -17,8 +17,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
+    simple-nixos-mailserver.url = gitlab:simple-nixos-mailserver/nixos-mailserver;
   };
-  outputs = { self, nixpkgs, home-manager, barrel, sops-nix, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, barrel, sops-nix, nixos-hardware, simple-nixos-mailserver, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -121,6 +122,7 @@
             ./modules/server/nextcloud.nix
             ./modules/server/gitea.nix
             ./modules/server/rmfakecloud.nix
+            simple-nixos-mailserver.nixosModule
             sops-nix.nixosModules.sops
           ];
         };
