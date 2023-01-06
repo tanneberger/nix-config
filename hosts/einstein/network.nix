@@ -9,7 +9,7 @@
     hostName = "einstein";
     hostId = "bf36ca23";
 
-    useDHCP = false;
+    useDHCP = true;
     interfaces.eth0.useDHCP = true;
     interfaces.wlan0.useDHCP = true;
     enableIPv6 = true;
@@ -18,6 +18,8 @@
     wireguard.enable = true;
     firewall.enable = true;
   };
+
+  users.users.root.initialPassword = "bruhmomentuno";
 
   services.resolved = {
     enable = true;
@@ -34,7 +36,7 @@
   systemd.network = {
     enable = true;
     # Interfaces on the machine
-    networks."10-ether-bond" = {
+    networks."10-ether" = {
       matchConfig.Name = "eth0";
       networkConfig = {
         DHCP = "yes";

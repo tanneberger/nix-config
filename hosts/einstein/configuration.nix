@@ -1,27 +1,20 @@
 { config, lib, pkgs, ... }:
 {
   imports = [
-    ./hardware-configuration.nix
+    #./hardware-configuration.nix
     ./network.nix
+    ./rpi-3b-4b.nix
   ];
 
+  #imports = [
+  #  (modulesPath + "/installer/sd-card/sd-image-aarch64.nix")
+  #];
+
   boot = {
-    loader = {
-      grub.enable = false;
-      #raspberryPi = {
-      #  enable = true;
-      #  version = 3;
-      #  uboot.enable = true;
-      #};
-    };
-    kernelPackages = pkgs.linuxPackages_latest;
-    # No ZFS on latest kernel:
-    tmpOnTmpfs = true;
+    supportedFilesystems = lib.mkForce [ "vfat" "ext4" ];
   };
 
   time.timeZone = "Europe/Berlin";
-
-  programs.tmux.enable = true;
 
   # Do not log to flash:
   services.journald.extraConfig = ''
@@ -33,6 +26,10 @@
     wheelNeedsPassword = false;
   };
 
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
   system.stateVersion = "22.05";
+
 }
 

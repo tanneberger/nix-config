@@ -5,21 +5,19 @@
       enable = true;
       extraPackages = with pkgs; [
         swaylock-fancy
+        swaylock
         swayidle
         wl-clipboard
         mako
         alacritty
         wofi
         wofi-emoji
-        #grim
-        #slurp
         gnome.adwaita-icon-theme
         i3status-rust
-        #dunst
-        #wezterm
         swayr
         dmenu-wayland
-        #waybar
+        xdg-desktop-portal-wlr
+        swayidle
       ];
     };
   };
@@ -30,6 +28,8 @@
   services.xserver.displayManager.gdm.wayland = true;
 
   services.xserver.displayManager.defaultSession = "sway";
+
+  xdg.portal.wlr.enable = true;
   /*input type:keyboard {
     xkb_layout "us,de,ru"
     xkb_variant ,nodeadkeys
@@ -37,4 +37,9 @@
     repeat_delay 250
     repeat_rate 30
     }*/
+
+
+  environment.systemPackages = with pkgs; [
+    xdg-desktop-portal-wlr
+  ];
 }

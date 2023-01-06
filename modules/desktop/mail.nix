@@ -78,7 +78,6 @@ let
     Patterns *
     Remove None
     SyncState *
-
   '');
 in
 {

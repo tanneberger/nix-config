@@ -48,6 +48,7 @@
         notmuch.enable = true;
 
         neomutt = {
+          sendMailCommand = "${pkgs.msmtp}/bin/msmtp -a tu-dresden";
           enable = true;
           extraMailboxes = [ "Sent" "Trash" ];
           mailboxName = "dd-ix";
@@ -107,6 +108,7 @@
           enable = true;
           extraMailboxes = [ "All" "Sent" "Trash" "Drafts" "Kalender" "Notizen" "Kontakte" "Postausgang" ];
           mailboxName = "tu-dresden";
+          sendMailCommand = "${pkgs.msmtp}/bin/msmtp -a tu-dresden";
           extraConfig = ''
             source ${../../dotfiles/neomutt/style.rc}
             set mailcap_path="~/.config/neomutt/mailcap"
@@ -161,10 +163,12 @@
           };
           subFolders = "Verbatim";
         };
+
         msmtp.enable = true;
         notmuch.enable = true;
 
         neomutt = {
+          sendMailCommand = "${pkgs.msmtp}/bin/msmtp -a tu-dresden";
           enable = true;
           extraMailboxes = [ "Sent" "Trash" "FSR" "IT-ADMIN" "Root" "ESE" ];
           mailboxName = "ifsr";

@@ -5,7 +5,6 @@
     ./certs.nix
     ./dvb-dump-nfs-automount.nix
     ./pipewire.nix
-    ./wayland.nix
     ./weechat.nix
     ./xscreen-config.nix
     ./mpd.nix
@@ -17,6 +16,7 @@
     "steam"
     "steam-original"
     "clion"
+    "idea-ultimate"
   ];
 
   boot = {
@@ -58,11 +58,11 @@
       auto-optimise-store = true;
       substituters = [
         "https://dump-dvb.cachix.org"
-        "https://nix-serve.hq.c3d2.de"
+        #"https://nix-serve.hq.c3d2.de"
       ];
       trusted-public-keys = [
         "dump-dvb.cachix.org-1:+Dq7gqpQG4YlLA2X3xJsG1v3BrlUGGpVtUKWk0dTyUU="
-        "nix-serve.hq.c3d2.de:KZRGGnwOYzys6pxgM8jlur36RmkJQ/y8y62e52fj1ps="
+        #"nix-serve.hq.c3d2.de:KZRGGnwOYzys6pxgM8jlur36RmkJQ/y8y62e52fj1ps="
       ];
     };
     extraOptions = ''
@@ -91,7 +91,7 @@
 
   };
   fonts.fontconfig = {
-    enable = true;
+    #enable = true;
   };
   fonts.fonts = with pkgs; [
     dejavu_fonts
@@ -120,7 +120,7 @@
     gqrx # radio tooling
     hackrf # hackrf slides
     rtl-sdr # lib rtl-sdr
-    barrel # lingua-franca tool
+    # barrel # lingua-franca tool
     wpa_supplicant_gui
     jq # json tool
     qFlipper # tool for flipper zero
@@ -128,6 +128,7 @@
     slurp # screenshotting
     grim # screenshotting
     texlive.combined.scheme-full
+    jetbrains.idea-ultimate
     emacs
 
     termusic # nice music player
@@ -159,11 +160,6 @@ gpgconf --launch gpg-agent
   programs = {
     mosh.enable = true;
     zsh.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      #pinentryFlavor = "curses";
-    };
     vim.defaultEditor = true;
     ssh = {
       startAgent = false;

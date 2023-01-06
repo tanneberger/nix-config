@@ -8,18 +8,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    barrel = {
-      url = "github:revol-xut/barrel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     simple-nixos-mailserver.url = gitlab:simple-nixos-mailserver/nixos-mailserver;
+    alarm-clock.url = github:revol-xut/lf-alarm-clock;
   };
-  outputs = { self, nixpkgs, home-manager, barrel, sops-nix, nixos-hardware, simple-nixos-mailserver, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, simple-nixos-mailserver, alarm-clock, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -38,13 +35,14 @@
             nixos-hardware.nixosModules.lenovo-thinkpad-e14-amd
             ./hosts/kirchhoff/configuration.nix
             ./hosts/kirchhoff/network.nix
+            ./modules/desktop/wayland.nix
+            ./modules/desktop/gnupg.nix
             ./modules/desktop/base.nix
             ./modules/server/sops.nix
             ./modules/desktop/tu-vpn.nix
             {
 
               nixpkgs.overlays = [
-                barrel.overlay."x86_64-linux"
               ];
 
               home-manager.useGlobalPkgs = true;
@@ -72,10 +70,6 @@
             sops-nix.nixosModules.sops
             {
 
-              nixpkgs.overlays = [
-                barrel.overlay."x86_64-linux"
-              ];
-
               home-manager.users.revol-xut = { pkgs, config, ... }: {
                 imports = [ ./modules/desktop/home.nix ];
               };
@@ -89,6 +83,7 @@
             sops-nix.nixosModules.sops
             ./hosts/planck/configuration.nix
             ./modules/desktop/base.nix
+            ./modules/desktop/wayland.nix
             ./modules/server/sops.nix
             {
               home-manager.users.revol-xut = { pkgs, config, ... }: {
@@ -104,6 +99,8 @@
             ./hosts/einstein/configuration.nix
             ./modules/server/base.nix
             ./modules/server/audio-server.nix
+            ./modules/server/clock.nix
+            alarm-clock.nixosModule
             #./modules/server/clock.nix
 
             sops-nix.nixosModules.sops

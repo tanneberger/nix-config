@@ -68,6 +68,7 @@
     thunderbird # email client
     zathura # minimal pdf viewer
     bat # is cat but nicer
+    blueberry # bluetooth manager
 
     # networking tools
     traceroute # traceroute for networking debugging
@@ -84,6 +85,8 @@
     rsync # file transfer
     pure-prompt # fancy prompt
     wdisplays # configuring wayland displays
+
+    # rustup
 
     # rust development
     cargo
@@ -187,7 +190,7 @@
       enableCompletion = true;
       enableAutosuggestions = true;
       enableSyntaxHighlighting = true;
-      history.save = 100000;
+      history.save = 1000000;
       autocd = true;
       shellAliases = {
         clion = "export _JAVA_AWT_WM_NONREPARENTING=1 && clion";
