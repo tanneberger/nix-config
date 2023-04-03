@@ -18,6 +18,7 @@
         dmenu-wayland
         xdg-desktop-portal-wlr
         swayidle
+        xdg-utils
       ];
     };
   };
@@ -30,15 +31,8 @@
   services.xserver.displayManager.defaultSession = "sway";
 
   xdg.portal.wlr.enable = true;
-  /*input type:keyboard {
-    xkb_layout "us,de,ru"
-    xkb_variant ,nodeadkeys
-    xkb_options grp:win_space_toggle
-    repeat_delay 250
-    repeat_rate 30
-    }*/
-
-
+  xdg.portal.enable = true;
+  
   environment.systemPackages = with pkgs; [
     xdg-desktop-portal-wlr
   ];

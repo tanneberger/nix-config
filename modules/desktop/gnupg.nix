@@ -9,7 +9,7 @@
   ];
 
   # smartcard support
-  services.pcscd.enable = false;
+  # services.pcscd.enable = false;
   hardware.gpgSmartcards.enable = true;
   programs.gnupg.agent = {
     enable = true;

@@ -29,10 +29,10 @@
   hardware.enableRedistributableFirmware = true;
 
   nix = {
-    settings.cores = 2;
+    settings.cores = 6;
     settings.max-jobs = 6;
     buildMachines = [
-      {
+      /*{
         hostName = "hydra.serv.zentralwerk.org";
         sshUser = "root";
         system = "x86_64-linux";
@@ -40,7 +40,7 @@
         supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
         speedFactor = 10;
         maxJobs = 10;
-      }
+      }*/
     ];
 
     distributedBuilds = true;
@@ -71,6 +71,7 @@
     algorithm = "zstd";
   };
 
+  boot.binfmt.emulatedSystems = [ "riscv32-linux" ];
   services.udev.extraRules = ''
     # MCH2022 Badge
     SUBSYSTEM=="usb", ATTR{idVendor}=="16d0", ATTR{idProduct}=="0f9a", MODE="0666"

@@ -13,10 +13,12 @@
 
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "discord"
     "steam"
     "steam-original"
     "clion"
     "idea-ultimate"
+    "zoom"
   ];
 
   boot = {
@@ -97,7 +99,7 @@
     dejavu_fonts
     font-awesome
     font-awesome_5
-    nerdfonts
+    #nerdfonts
   ];
 
   environment.systemPackages = with pkgs; [
@@ -142,6 +144,15 @@
     jetbrains.clion
     jetbrains.pycharm-community
 
+    typst 
+    discord
+    neovim
+    firefox-wayland
+    direnv
+    (nix-direnv.override { enableFlakes = true; })
+    chromium
+    gdb
+    binutils-unwrapped-all-targets
   ];
 
   hardware = {
@@ -149,6 +160,12 @@
     rtl-sdr.enable = true;
   };
 
+  environment.pathsToLink = [
+    "/share/nix-direnv"
+  ];
+
+  ## direnv
+  programs.bash.interactiveShellInit = ''eval "$(direnv hook bash)"'';
 
   environment.shellInit = ''export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
@@ -159,14 +176,18 @@ gpgconf --launch gpg-agent
 
   programs = {
     mosh.enable = true;
-    zsh.enable = true;
+    zsh = {
+      enable = true;
+      interactiveShellInit = ''eval "$(direnv hook zsh)"'';
+    };
     vim.defaultEditor = true;
+    neovim = {
+      viAlias = true;
+      vimAlias = true;
+    };
     ssh = {
       startAgent = false;
     };
   };
-  #system.stateVersion = "21.11";
-
-  # home manager configuration
 }
 

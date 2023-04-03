@@ -15,13 +15,13 @@
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     simple-nixos-mailserver.url = gitlab:simple-nixos-mailserver/nixos-mailserver;
     alarm-clock.url = github:revol-xut/lf-alarm-clock;
+    fenix.url = "github:nix-community/fenix/monthly";
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, simple-nixos-mailserver, alarm-clock, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, simple-nixos-mailserver, alarm-clock, fenix, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
     {
-      packages."x86_64-linux".default = self.packages."aarch64-linux".einstein;
       packages."aarch64-linux".einstein = self.nixosConfigurations.einstein.config.system.build.sdImage;
       packages."x86_64-linux".schroedinger = self.nixosConfigurations.schroedinger.config.system.build.vm;
 
@@ -39,10 +39,11 @@
             ./modules/desktop/gnupg.nix
             ./modules/desktop/base.nix
             ./modules/server/sops.nix
+            #./modules/desktop/docker.nix
             ./modules/desktop/tu-vpn.nix
             {
-
-              nixpkgs.overlays = [
+              environment.systemPackages = [
+                fenix.packages.x86_64-linux.stable.toolchain
               ];
 
               home-manager.useGlobalPkgs = true;

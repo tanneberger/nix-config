@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
 
   imports = [
-    ./nvim.nix
+    #./nvim.nix
     ./dotfiles.nix
     ./neomutt.nix
   ];
@@ -15,6 +15,7 @@
     "pycharm-community"
     "steam"
     "steam-original"
+    "zoom"
   ];
 
   home.packages = with pkgs; [
@@ -69,6 +70,7 @@
     zathura # minimal pdf viewer
     bat # is cat but nicer
     blueberry # bluetooth manager
+    zoom-us
 
     # networking tools
     traceroute # traceroute for networking debugging
@@ -85,15 +87,17 @@
     rsync # file transfer
     pure-prompt # fancy prompt
     wdisplays # configuring wayland displays
-
+    texmaker
     # rustup
 
     # rust development
-    cargo
-    rustc
+    # cargo
+    # rustc
+    # clippy # linter and smell checker
+    # rustfmt # auto-formatter
     gef
-    #rust-analyzer
-    #rust-analyzer-unwrapped
+    # rust-analyzer
+    # rust-analyzer-unwrapped
 
     # spelling
     aspell
@@ -105,17 +109,17 @@
     #jetbrains.clion
 
     jetbrains.idea-community
-    #inspectrum #gqrx
+    inspectrum #gqrx
     #jetbrains.clion
     #jetbrains.pycharm-community
     #cpplint
     #llvm
     #gdb
     #cgdb
+    libreoffice
   ];
 
   programs = {
-    firefox.enable = true; # browser
     fzf.enable = true; # fuzzy finder 
     alacritty = {
       enable = true;
@@ -212,6 +216,7 @@
         mo = "${pkgs.mosh}/bin/mosh";
         ip = "${pkgs.iproute2}/bin/ip -color";
         v = "${pkgs.neovim}/bin/nvim";
+        vim = "${pkgs.neovim}/bin/nvim";
       };
       initExtra = ''
         autoload -U promptinit; promptinit

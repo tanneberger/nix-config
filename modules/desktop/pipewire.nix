@@ -17,6 +17,8 @@
     enable = true;
     pulse.enable = true;
     alsa.enable = true;
-    config.pipewire-pulse = lib.importJSON ../../dotfiles/pipewire-pulse.conf.json;
+    audio.enable = true;
+
+    #config.pipewire-pulse = lib.importJSON ../../dotfiles/pipewire-pulse.conf.json;
   };
 }
