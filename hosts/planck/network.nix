@@ -158,53 +158,53 @@
       netdevs."10-wg-vpn-zentralwerk" = {
       enable = true;
       netdevConfig = {
-        Kind = "wireguard";
-        Name = "wg-vpn-zentralwerk";
-        Description = "Tunnel to the best basement in Dresden";
+      Kind = "wireguard";
+      Name = "wg-vpn-zentralwerk";
+      Description = "Tunnel to the best basement in Dresden";
       };
       wireguardConfig = {
-        PrivateKeyFile = config.sops.secrets."wg-zw-seckey".path;
+      PrivateKeyFile = config.sops.secrets."wg-zw-seckey".path;
       };
       wireguardPeers = [
-        {
-          wireguardPeerConfig = {
-            PublicKey = "PG2VD0EB+Oi+U5/uVMUdO5MFzn59fAck6hz8GUyLMRo=";
-            Endpoint = "81.201.149.152:1337";
-            AllowedIPs = [ "172.20.72.0/21" "172.22.90.0/24" ];
-            PersistentKeepalive = 25;
-          };
-        }
+      {
+      wireguardPeerConfig = {
+      PublicKey = "PG2VD0EB+Oi+U5/uVMUdO5MFzn59fAck6hz8GUyLMRo=";
+      Endpoint = "81.201.149.152:1337";
+      AllowedIPs = [ "172.20.72.0/21" "172.22.90.0/24" ];
+      PersistentKeepalive = 25;
+      };
+      }
       ];
       };
       networks."10-wg-vpn-zentralwerk" = {
       enable = false;
       matchConfig.Name = "wg-vpn-zentralwerk";
       networkConfig = {
-        Address = "172.20.76.227/21";
-        IPv6AcceptRA = true;
-        DNS = "172.20.73.8";
-        #gateway = "vpn-gw.vpn.zentralwerk.org";
-        Domains = [
-          "~c3d2.de"
-          "~zentralwerk.org"
-        ];
+      Address = "172.20.76.227/21";
+      IPv6AcceptRA = true;
+      DNS = "172.20.73.8";
+      #gateway = "vpn-gw.vpn.zentralwerk.org";
+      Domains = [
+      "~c3d2.de"
+      "~zentralwerk.org"
+      ];
       };
 
       routes = [
-        {
-          routeConfig = {
-            Gateway = "172.20.72.1";
-            Destination = "172.20.72.0/21";
-          };
-        }
-        {
-          routeConfig = {
-            Gateway = "172.20.72.1";
-            Destination = "172.20.90.0/24";
-          };
-        }
+      {
+      routeConfig = {
+      Gateway = "172.20.72.1";
+      Destination = "172.20.72.0/21";
+      };
+      }
+      {
+      routeConfig = {
+      Gateway = "172.20.72.1";
+      Destination = "172.20.90.0/24";
+      };
+      }
       ];
       };
-      */
+    */
   };
 }
