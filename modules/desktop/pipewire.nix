@@ -5,7 +5,7 @@
   sound.enable = true;
   hardware.pulseaudio = {
     enable = false;
-    zeroconf.discovery.enable = true;
+    #zeroconf.discovery.enable = true;
     extraClientConf = ''
       autospawn=yes
     '';

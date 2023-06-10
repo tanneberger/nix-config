@@ -30,8 +30,8 @@
 
   services.xserver.displayManager.defaultSession = "sway";
 
-  xdg.portal.wlr.enable = true;
-  xdg.portal.enable = true;
+  #xdg.portal.wlr.enable = true;
+  #xdg.portal.enable = true;
   
   environment.systemPackages = with pkgs; [
     xdg-desktop-portal-wlr

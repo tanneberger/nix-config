@@ -29,7 +29,7 @@
   hardware.enableRedistributableFirmware = true;
 
   nix = {
-    settings.cores = 6;
+    settings.cores = 0;
     settings.max-jobs = 6;
     buildMachines = [
       /*{
@@ -38,7 +38,16 @@
         system = "x86_64-linux";
         sshKey = "/home/revol-xut/.ssh/id_rsa";
         supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-        speedFactor = 10;
+        speedFactor = 5;
+        maxJobs = 10;
+      }
+      {
+        hostName = "server7.cluster.zentralwerk.org";
+        sshUser = "root";
+        system = "x86_64-linux";
+        sshKey = "/home/revol-xut/.ssh/id_rsa";
+        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+        speedFactor = 6;
         maxJobs = 10;
       }*/
     ];
@@ -100,6 +109,8 @@
     autoScrub.enable = true;
     trim.enable = true;
   };
+
+  programs.nix-ld.enable = true;
 
   system.stateVersion = "22.05"; # Did you read the comment?
 }

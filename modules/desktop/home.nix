@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }: {
 
   imports = [
-    #./nvim.nix
     ./dotfiles.nix
     ./neomutt.nix
   ];
@@ -50,7 +49,7 @@
     qutebrowser # superiour vim browser
     tdesktop # normal telegram desktop
     slack-term # terminal client for slack (REMOVE Weechat)
-    pdfpc # tool for presentations
+    # pdfpc # tool for presentations TODO: borked
     #lynx # text based browser
     gopher # very nice 1900s protocoll
     openvpn # vpn software
@@ -109,14 +108,14 @@
     #jetbrains.clion
 
     jetbrains.idea-community
-    inspectrum #gqrx
+    inspectrum 
+    gqrx
     #jetbrains.clion
     #jetbrains.pycharm-community
     #cpplint
     #llvm
     #gdb
     #cgdb
-    libreoffice
   ];
 
   programs = {

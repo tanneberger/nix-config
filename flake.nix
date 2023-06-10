@@ -12,12 +12,14 @@
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    c3d2-user-module.url = "git+https://gitea.c3d2.de/C3D2/nix-user-module.git";
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     simple-nixos-mailserver.url = gitlab:simple-nixos-mailserver/nixos-mailserver;
-    alarm-clock.url = github:revol-xut/lf-alarm-clock;
+    #alarm-clock.url = github:revol-xut/lf-alarm-clock;
     fenix.url = "github:nix-community/fenix/monthly";
+    shikane.url = "gitlab:w0lff/shikane/nixification";
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, simple-nixos-mailserver, alarm-clock, fenix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, simple-nixos-mailserver, fenix, c3d2-user-module, shikane, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -39,11 +41,19 @@
             ./modules/desktop/gnupg.nix
             ./modules/desktop/base.nix
             ./modules/server/sops.nix
-            #./modules/desktop/docker.nix
+            c3d2-user-module.nixosModule
+            ./modules/desktop/docker.nix
             ./modules/desktop/tu-vpn.nix
             {
+              
+              #c3d2.audioStreaming = true;
+
               environment.systemPackages = [
                 fenix.packages.x86_64-linux.stable.toolchain
+              ];
+
+              nixpkgs.overlays = [
+                #shikane.overlay
               ];
 
               home-manager.useGlobalPkgs = true;
@@ -101,7 +111,7 @@
             ./modules/server/base.nix
             ./modules/server/audio-server.nix
             ./modules/server/clock.nix
-            alarm-clock.nixosModule
+            #alarm-clock.nixosModule
             #./modules/server/clock.nix
 
             sops-nix.nixosModules.sops

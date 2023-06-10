@@ -1,7 +1,7 @@
 { config, pkgs, lib, options, ... }:
 {
   imports = [
-    #./docker.nix
+    ./docker.nix
     ./certs.nix
     ./dvb-dump-nfs-automount.nix
     ./pipewire.nix
@@ -19,6 +19,8 @@
     "clion"
     "idea-ultimate"
     "zoom"
+    "minecraft-launcher"
+    "prismlauncher"
   ];
 
   boot = {
@@ -93,7 +95,7 @@
 
   };
   fonts.fontconfig = {
-    #enable = true;
+    enable = true;
   };
   fonts.fonts = with pkgs; [
     dejavu_fonts
@@ -153,6 +155,8 @@
     chromium
     gdb
     binutils-unwrapped-all-targets
+    minecraft
+    #prismlauncher
   ];
 
   hardware = {

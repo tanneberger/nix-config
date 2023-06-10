@@ -4,7 +4,7 @@
 
   programs = {
     mbsync.enable = true;
-    msmtp.enable = true;
+    #msmtp.enable = true;
     #imapnotify.enable = true;
     himalaya = {
       enable = false;
@@ -44,7 +44,7 @@
           };
           subFolders = "Verbatim";
         };
-        msmtp.enable = true;
+        #msmtp.enable = true;
         notmuch.enable = true;
 
         neomutt = {
@@ -102,7 +102,7 @@
           };
           subFolders = "Verbatim";
         };
-        msmtp.enable = true;
+        #msmtp.enable = true;
         notmuch.enable = true;
         neomutt = {
           enable = true;
@@ -164,7 +164,7 @@
           subFolders = "Verbatim";
         };
 
-        msmtp.enable = true;
+        #msmtp.enable = true;
         notmuch.enable = true;
 
         neomutt = {
