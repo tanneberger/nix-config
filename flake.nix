@@ -18,8 +18,9 @@
     #alarm-clock.url = github:revol-xut/lf-alarm-clock;
     fenix.url = "github:nix-community/fenix/monthly";
     shikane.url = "gitlab:w0lff/shikane/nixification";
+    bahnbingo.url = "github:revol-xut/bahn.bingo";
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, simple-nixos-mailserver, fenix, c3d2-user-module, shikane, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, simple-nixos-mailserver, fenix, c3d2-user-module, shikane, bahnbingo, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -41,19 +42,12 @@
             ./modules/desktop/gnupg.nix
             ./modules/desktop/base.nix
             ./modules/server/sops.nix
-            c3d2-user-module.nixosModule
             ./modules/desktop/docker.nix
             ./modules/desktop/tu-vpn.nix
+            c3d2-user-module.nixosModule
             {
-              
-              #c3d2.audioStreaming = true;
-
               environment.systemPackages = [
                 fenix.packages.x86_64-linux.stable.toolchain
-              ];
-
-              nixpkgs.overlays = [
-                #shikane.overlay
               ];
 
               home-manager.useGlobalPkgs = true;
@@ -130,9 +124,16 @@
             ./modules/server/nextcloud.nix
             ./modules/server/gitea.nix
             ./modules/server/rmfakecloud.nix
+            ./modules/server/bahnbingo.nix
             #./modules/server/mail.nix
             simple-nixos-mailserver.nixosModule
             sops-nix.nixosModules.sops
+            bahnbingo.nixosModules.default
+            {
+              nixpkgs.overlays = [
+                bahnbingo.overlays.default
+              ];
+            }
           ];
         };
       };
