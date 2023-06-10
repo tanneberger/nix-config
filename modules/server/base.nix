@@ -44,7 +44,7 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    passwordAuthentication = false;
+    settings.PasswordAuthentication = false;
   };
 
   programs.mosh.enable = true;

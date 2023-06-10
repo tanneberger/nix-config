@@ -24,9 +24,7 @@
   ];
 
   boot = {
-
     binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
-    tmpOnTmpfs = true;
     #kernelPackages = pkgs.linuxKernel.packages.linux_5_15;
   };
 
