@@ -10,7 +10,7 @@
           http2 = true;
           locations = {
             "/" = {
-              root = poettering;
+              root = pkgs.poettering;
             };
           };
         };

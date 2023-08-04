@@ -19,9 +19,12 @@
     fenix.url = "github:nix-community/fenix/monthly";
     shikane.url = "gitlab:w0lff/shikane/nixification";
     bahnbingo.url = "github:revol-xut/bahn.bingo";
-    poettering.url = "github:23x/poetti-soundsystem";
+    poettering = {
+      url = "github:23x/poetti-soundsystem";
+      flake = false;
+    };
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, simple-nixos-mailserver, fenix, c3d2-user-module, shikane, bahnbingo, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, simple-nixos-mailserver, fenix, c3d2-user-module, shikane, bahnbingo, poettering, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
