@@ -64,7 +64,8 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.package = pkgs.bluezFull;
   services.blueman.enable = true;
-
+  
+  hardware.opengl.enable = true;
   hardware.opengl.extraPackages = with pkgs; [
     amdvlk
   ];

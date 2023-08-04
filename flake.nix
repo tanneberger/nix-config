@@ -19,6 +19,7 @@
     fenix.url = "github:nix-community/fenix/monthly";
     shikane.url = "gitlab:w0lff/shikane/nixification";
     bahnbingo.url = "github:revol-xut/bahn.bingo";
+    poettering.url = "github:23x/poetti-soundsystem";
   };
   outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, simple-nixos-mailserver, fenix, c3d2-user-module, shikane, bahnbingo, ... }@inputs:
     let
@@ -49,6 +50,8 @@
               environment.systemPackages = [
                 fenix.packages.x86_64-linux.stable.toolchain
               ];
+
+              c3d2.audioStreaming = true;
 
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -125,6 +128,7 @@
             ./modules/server/gitea.nix
             ./modules/server/rmfakecloud.nix
             ./modules/server/bahnbingo.nix
+            ./modules/server/poettering.nix
             #./modules/server/mail.nix
             simple-nixos-mailserver.nixosModule
             sops-nix.nixosModules.sops
@@ -132,6 +136,9 @@
             {
               nixpkgs.overlays = [
                 bahnbingo.overlays.default
+                (final: prev: {
+                  poettering = poettering;
+                })
               ];
             }
           ];

@@ -69,7 +69,6 @@
     zathura # minimal pdf viewer
     bat # is cat but nicer
     blueberry # bluetooth manager
-    zoom-us
 
     # networking tools
     traceroute # traceroute for networking debugging
