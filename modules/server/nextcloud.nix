@@ -19,7 +19,7 @@
     enable = true;
     hostName = "cloud.tassilo-tanneberger.de";
     https = true;
-    package = pkgs.nextcloud26;
+    package = pkgs.nextcloud27;
     enableBrokenCiphersForSSE = false;
     config = {
       dbtype = "pgsql";
