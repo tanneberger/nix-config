@@ -12,7 +12,7 @@
             enableACME = true;
             forceSSL = true;
             http2 = true;
-            globalRedirect = "https://github.com/revol-xut";
+            globalRedirect = "github.com/revol-xut";
           };
         };
       };
