@@ -4,17 +4,17 @@
   #security.acme.defaults.server = "https://acme-staging-v02.api.letsencrypt.org/directory";
 
   services = {
-      nginx = {
-        enable = true;
-        recommendedProxySettings = true;
-        virtualHosts = {
-          "tanneberger.me" = {
-            enableACME = true;
-            forceSSL = true;
-            http2 = true;
-            globalRedirect = "github.com/revol-xut";
-          };
+    nginx = {
+      enable = true;
+      recommendedProxySettings = true;
+      virtualHosts = {
+        "tanneberger.me" = {
+          enableACME = true;
+          forceSSL = true;
+          http2 = true;
+          globalRedirect = "github.com/revol-xut";
         };
       };
     };
+  };
 }

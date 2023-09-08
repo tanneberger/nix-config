@@ -15,6 +15,7 @@
     "steam"
     "steam-original"
     "zoom"
+    "vscode"
   ];
 
   home.packages = with pkgs; [
@@ -69,6 +70,7 @@
     zathura # minimal pdf viewer
     bat # is cat but nicer
     blueberry # bluetooth manager
+    sops # secrets manager
 
     # networking tools
     traceroute # traceroute for networking debugging
@@ -78,6 +80,10 @@
     nmap # our favorite port scanner
     ethtool # get information about link
     arp-scan # get layer 1 information
+    minicom # serial console
+    ipcalc # tool to calculate ip prefixes
+    tcpdump # watching netdevs
+    mtr # better traceroute
 
     pciutils # checking connected pcidevices
     usbutils # lsusb
@@ -107,14 +113,24 @@
     #jetbrains.clion
 
     jetbrains.idea-community
-    inspectrum 
+    inspectrum
     gqrx
     #jetbrains.clion
     #jetbrains.pycharm-community
     #cpplint
     #llvm
-    #gdb
+    gdb
+    rr
     #cgdb
+
+    spotify-qt
+    spot
+
+    nodejs # for npm used by chatvm
+    nodePackages.prettier # for formatting
+    terminus-nerdfont
+    vscode
+    obsidian
   ];
 
   programs = {
@@ -222,6 +238,11 @@
         # change the path color
         zstyle :prompt:pure:git:branch color red
         prompt pure
+      '';
+      extraConfig = ''
+        bindkey "^[[1;5C" forward-word
+        bindkey "^[[1;5D" backward-word
+
       '';
     };
 

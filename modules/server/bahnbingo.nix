@@ -1,4 +1,4 @@
-{pkgs, lib, ...}: {
+{ pkgs, lib, ... }: {
   bahn-bingo = {
     enable = true;
     http = {

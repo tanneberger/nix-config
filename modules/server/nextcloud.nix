@@ -17,7 +17,7 @@
 
   services.nextcloud = {
     enable = true;
-    hostName = "cloud.tassilo-tanneberger.de";
+    hostName = "cloud.tanneberger.me";
     https = true;
     package = pkgs.nextcloud27;
     enableBrokenCiphersForSSE = false;
@@ -32,8 +32,8 @@
     };
   };
 
-  services.nginx.virtualHosts."cloud.tassilo-tanneberger.de".forceSSL = true;
-  services.nginx.virtualHosts."cloud.tassilo-tanneberger.de".enableACME = true;
+  services.nginx.virtualHosts."cloud.tanneberger.de".forceSSL = true;
+  services.nginx.virtualHosts."cloud.tanneberger.de".enableACME = true;
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 }

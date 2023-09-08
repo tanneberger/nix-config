@@ -7,13 +7,13 @@
   sops.defaultSopsFile = ../../secrets/kirchhoff.yaml;
 
   boot = {
-    initrd.kernelModules = [ "amdgpu" ];
+    initrd.kernelModules = [ "amdgpu" "ext4" ];
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     kernelParams = [
       "nohibernate"
     ];
 
-    tmp ={
+    tmp = {
       useTmpfs = true;
       cleanOnBoot = true;
     };
@@ -27,6 +27,7 @@
     zfs.requestEncryptionCredentials = true;
   };
 
+  boot.kernel.sysctl."kernel.perf_event_paranoid" = 1;
   hardware.enableRedistributableFirmware = true;
 
   nix = {
@@ -54,17 +55,21 @@
     ];
 
     distributedBuilds = true;
+    settings = {
+      sandbox = false;
+    };
     extraOptions = ''
       builders-use-substitutes = true
     '';
   };
+  services.gvfs.enable = true;
 
   security.rtkit.enable = true;
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.package = pkgs.bluezFull;
   services.blueman.enable = true;
-  
+
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = with pkgs; [
     amdvlk

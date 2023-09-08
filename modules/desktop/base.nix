@@ -21,6 +21,8 @@
     "zoom"
     "minecraft-launcher"
     "prismlauncher"
+    "vscode"
+    "obsidian"
   ];
 
   boot = {
@@ -99,7 +101,7 @@
     dejavu_fonts
     font-awesome
     font-awesome_5
-    #nerdfonts
+    nerdfonts
   ];
 
   environment.systemPackages = with pkgs; [
@@ -144,7 +146,7 @@
     jetbrains.clion
     jetbrains.pycharm-community
 
-    typst 
+    typst
     discord
     neovim
     firefox-wayland
@@ -154,7 +156,7 @@
     gdb
     binutils-unwrapped-all-targets
     minecraft
-    #prismlauncher
+    shikane
   ];
 
   hardware = {
