@@ -14,8 +14,6 @@
     };
     c3d2-user-module.url = "git+https://gitea.c3d2.de/C3D2/nix-user-module.git";
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
-    simple-nixos-mailserver.url = gitlab:simple-nixos-mailserver/nixos-mailserver;
-    #alarm-clock.url = github:revol-xut/lf-alarm-clock;
     fenix.url = "github:nix-community/fenix/monthly";
     shikane.url = "gitlab:w0lff/shikane/nixification";
     bahnbingo.url = "github:revol-xut/bahn.bingo";
@@ -23,8 +21,12 @@
       url = "github:23x/poetti-soundsystem";
       flake = false;
     };
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, simple-nixos-mailserver, fenix, c3d2-user-module, shikane, bahnbingo, poettering, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, shikane, bahnbingo, poettering, microvm, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -69,40 +71,6 @@
             }
           ];
         };
-        heisenberg = buildSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            home-manager.nixosModules.home-manager
-            ./hosts/heisenberg/configuration.nix
-            ./hosts/heisenberg/network.nix
-            ./modules/desktop/base.nix
-            ./modules/server/sops.nix
-            sops-nix.nixosModules.sops
-            {
-
-              home-manager.users.revol-xut = { pkgs, config, ... }: {
-                imports = [ ./modules/desktop/home.nix ];
-              };
-            }
-          ];
-        };
-        planck = buildSystem {
-          system = "x86_64-linux";
-          modules = [
-            home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
-            ./hosts/planck/configuration.nix
-            ./modules/desktop/base.nix
-            ./modules/desktop/wayland.nix
-            ./modules/server/sops.nix
-            {
-              home-manager.users.revol-xut = { pkgs, config, ... }: {
-                imports = [ ./modules/desktop/home.nix ];
-              };
-            }
-          ];
-        };
         einstein = buildSystem {
           system = "aarch64-linux";
           modules = [
@@ -133,9 +101,9 @@
             ./modules/server/bahnbingo.nix
             ./modules/server/poettering.nix
             #./modules/server/mail.nix
-            simple-nixos-mailserver.nixosModule
             sops-nix.nixosModules.sops
             bahnbingo.nixosModules.default
+            microvm.nixosModules.host
             {
               nixpkgs.overlays = [
                 bahnbingo.overlays.default
@@ -143,6 +111,19 @@
                   poettering = poettering;
                 })
               ];
+              microvm.autostart = [
+                "nextcloud-vm"
+              ];
+            }
+          ];
+        };
+        nextcloud-vm = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            microvm.nixosModules.microvm
+            {
+              networking.hostName = "nextcloud-vm";
+              microvm.hypervisor = "cloud-hypervisor";
             }
           ];
         };

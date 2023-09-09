@@ -17,6 +17,7 @@
     "steam"
     "steam-original"
     "clion"
+    "webstorm"
     "idea-ultimate"
     "zoom"
     "minecraft-launcher"
@@ -144,6 +145,7 @@
     font-awesome_5
     unicode-emoji
     jetbrains.clion
+    jetbrains.webstorm
     jetbrains.pycharm-community
 
     typst

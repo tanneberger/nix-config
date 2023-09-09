@@ -131,6 +131,8 @@
     terminus-nerdfont
     vscode
     obsidian
+    jdk17_headless
+    yarn
   ];
 
   programs = {
@@ -233,16 +235,14 @@
         vim = "${pkgs.neovim}/bin/nvim";
       };
       initExtra = ''
+        bindkey "^[[1;5C" forward-word
+        bindkey "^[[1;5D" backward-word
+
         autoload -U promptinit; promptinit
 
         # change the path color
         zstyle :prompt:pure:git:branch color red
         prompt pure
-      '';
-      extraConfig = ''
-        bindkey "^[[1;5C" forward-word
-        bindkey "^[[1;5D" backward-word
-
       '';
     };
 
