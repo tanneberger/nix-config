@@ -10,7 +10,7 @@
           http2 = true;
           locations = {
             "/" = {
-              root = "/var/lib/webiste"
+              root = "/var/lib/webiste";
             };
           };
         };
