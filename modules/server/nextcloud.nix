@@ -32,8 +32,8 @@
     };
   };
 
-  services.nginx.virtualHosts."cloud.tanneberger.de".forceSSL = true;
-  services.nginx.virtualHosts."cloud.tanneberger.de".enableACME = true;
+  services.nginx.virtualHosts."cloud.tanneberger.me".forceSSL = true;
+  services.nginx.virtualHosts."cloud.tanneberger.me".enableACME = true;
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
