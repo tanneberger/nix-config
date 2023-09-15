@@ -96,11 +96,9 @@
             ./hosts/schroedinger/configuration.nix
             ./modules/server/base.nix
             ./modules/server/nextcloud.nix
-            ./modules/server/gitea.nix
-            ./modules/server/rmfakecloud.nix
             ./modules/server/bahnbingo.nix
             ./modules/server/poettering.nix
-            #./modules/server/mail.nix
+            ./modules/server/website.nix
             sops-nix.nixosModules.sops
             bahnbingo.nixosModules.default
             microvm.nixosModules.host

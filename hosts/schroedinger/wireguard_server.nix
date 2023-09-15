@@ -12,7 +12,7 @@ in
       netdevConfig = {
         Kind = "wireguard";
         Name = "hole";
-        Description = "tassilos's enterprise network";
+        Description = "tassilos's enterprise grade network";
       };
       wireguardConfig = {
         PrivateKeyFile = config.sops.secrets."wg-hole-seckey".path;
