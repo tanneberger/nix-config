@@ -55,6 +55,7 @@
             source ${../../dotfiles/neomutt/style.rc}
             set mailcap_path="~/.config/neomutt/mailcap"
             bind attach <return> view-mailcap
+            set crypt_use_gpgme=yes
           '';
         };
         primary = true;

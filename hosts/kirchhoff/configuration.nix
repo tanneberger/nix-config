@@ -34,7 +34,7 @@
     settings.cores = 0;
     settings.max-jobs = 6;
     buildMachines = [
-      /*{
+      {
         hostName = "hydra.serv.zentralwerk.org";
         sshUser = "root";
         system = "x86_64-linux";
@@ -43,7 +43,7 @@
         speedFactor = 5;
         maxJobs = 10;
       }
-      {
+      /*{
         hostName = "server7.cluster.zentralwerk.org";
         sshUser = "root";
         system = "x86_64-linux";

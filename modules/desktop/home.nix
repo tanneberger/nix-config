@@ -112,7 +112,6 @@
     cmake
     #jetbrains.clion
 
-    jetbrains.idea-community
     inspectrum
     gqrx
     #jetbrains.clion
@@ -133,6 +132,7 @@
     obsidian
     jdk17_headless
     yarn
+    zotero
   ];
 
   programs = {
@@ -217,7 +217,6 @@
         calcurse-caldav = "CALCURSE_CALDAV_PASSWORD=$(pass show radicale/revol-xut) calcurse-caldav";
         calendar = "calcurse-caldav --init=keep-remote  && calcurse && calcurse-caldav --init=keep-local";
         browser = "export USE_WOLFRAM_LD_LIBRARY_PATH=1 && export QT_XCB_GL_INTEGRATION=none && qutebrowser";
-        idea-ultimate = "export _JAVA_AWT_WM_NONREPARENTING=1 && idea-ultimate";
         ccc-slack = "slack-term --config ~/.config/slack-term/ccc-config";
         lf-slack = "slack-term --config ~/.config/slack-term/lf-lang-config";
         update = "sudo nixos-rebuild switch";

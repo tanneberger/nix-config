@@ -7,7 +7,7 @@
 
       xkbOptions = "compose:ralt";
 
-      windowManager.dwm.enable = true;
+      #windowManager.dwm.enable = true;
       displayManager.lightdm = {
         enable = true;
         background = "${pkgs.public-assets}/wallpaper_neon_3.png";

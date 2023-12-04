@@ -14,15 +14,20 @@
     "wg-hole-seckey" = {
       owner = config.users.users.systemd-network.name;
     };
+    "wg-dd-zone-seckey" = {
+      owner = config.users.users.systemd-network.name;
+    };
+
   };
 
   networking = {
     hostName = "kirchhoff";
     hostId = "045d0684";
     enableIPv6 = true;
-    useDHCP = true;
+    useDHCP = lib.mkForce true;
     interfaces.enp1s0.useDHCP = true;
     interfaces.wlan0.useDHCP = true;
+    interfaces.james.useDHCP = true;
     useNetworkd = true;
 
     wireguard.enable = true;
@@ -71,6 +76,7 @@
     networks."10-wlan-bond" = {
       matchConfig.Name = "wlan0";
       networkConfig = {
+        #DHCP = "yes";
         Bond = "james";
       };
     };
@@ -115,6 +121,37 @@
       };
       routes = [
         { routeConfig = { Gateway = "10.13.37.1"; Destination = "10.13.37.0/24"; }; }
+      ];
+    };
+
+    netdevs."30-wg-dd-zone" = {
+      netdevConfig = {
+        Kind = "wireguard";
+        Name = "wg-dd-zone";
+        Description = "dresden.zone enterprise network";
+      };
+      wireguardConfig = {
+        PrivateKeyFile = config.sops.secrets."wg-dd-zone-seckey".path;
+      };
+      wireguardPeers = [
+        {
+          wireguardPeerConfig = {
+            PublicKey = "pkU0pEs9N8DPQT6GCkesARus8C8KhIoUpfgVODdL8kQ=";
+            Endpoint = "c3d2.host.dresden.zone:51820";
+            AllowedIPs = [ "10.77.77.0/24" ];
+            PersistentKeepalive = 25;
+          };
+        }
+      ];
+    };
+    networks."30-wg-dd-zone" = {
+      matchConfig.Name = "wg-dd-zone";
+      networkConfig = {
+        Address = "10.77.77.2/24";
+        IPv6AcceptRA = true;
+      };
+      routes = [
+        { routeConfig = { Gateway = "10.77.77.1"; Destination = "10.77.77.0/24"; }; }
       ];
     };
 

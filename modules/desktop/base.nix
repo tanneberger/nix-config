@@ -18,7 +18,6 @@
     "steam-original"
     "clion"
     "webstorm"
-    "idea-ultimate"
     "zoom"
     "minecraft-launcher"
     "prismlauncher"
@@ -63,11 +62,11 @@
       auto-optimise-store = true;
       substituters = [
         "https://dump-dvb.cachix.org"
-        #"https://nix-serve.hq.c3d2.de"
+        "https://nix-cache.hq.c3d2.de"
       ];
       trusted-public-keys = [
         "dump-dvb.cachix.org-1:+Dq7gqpQG4YlLA2X3xJsG1v3BrlUGGpVtUKWk0dTyUU="
-        #"nix-serve.hq.c3d2.de:KZRGGnwOYzys6pxgM8jlur36RmkJQ/y8y62e52fj1ps="
+        "nix-cache.hq.c3d2.de:KZRGGnwOYzys6pxgM8jlur36RmkJQ/y8y62e52fj1ps="
       ];
     };
     extraOptions = ''
@@ -88,7 +87,7 @@
     };
     udev.packages = [ pkgs.yubikey-personalization ];
     tlp = {
-      enable = true;
+      #enable = true;
       settings = {
         "USB_BLACKLIST" = "1d50:604b 1d50:6089 1d50:cc15 1fc9:000c";
       };
@@ -103,6 +102,9 @@
     font-awesome
     font-awesome_5
     nerdfonts
+    stix-two
+    stix-otf
+    open-sans
   ];
 
   environment.systemPackages = with pkgs; [
@@ -133,8 +135,8 @@
     slurp # screenshotting
     grim # screenshotting
     texlive.combined.scheme-full
-    jetbrains.idea-ultimate
     emacs
+    zoom-us
 
     termusic # nice music player
     nix-output-monitor # fancy output  for nix build
@@ -153,12 +155,17 @@
     neovim
     firefox-wayland
     direnv
-    (nix-direnv.override { enableFlakes = true; })
+    #(nix-direnv.override { enableFlakes = true; })
+    nix-direnv
     chromium
     gdb
     binutils-unwrapped-all-targets
     minecraft
     shikane
+    imagemagick
+    openssl
+    pkg-config
+    nodePackages_latest.pnpm
   ];
 
   hardware = {
