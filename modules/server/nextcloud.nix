@@ -20,7 +20,6 @@
     hostName = "cloud.tanneberger.me";
     https = true;
     package = pkgs.nextcloud27;
-    enableBrokenCiphersForSSE = false;
     config = {
       dbtype = "pgsql";
       dbname = "nextcloud";
