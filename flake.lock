@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1696889364,
-        "narHash": "sha256-OIikZpnTPoQSptC9lFbPvMHmU3Kro8Ebq44qDJNgCjg=",
+        "lastModified": 1702852720,
+        "narHash": "sha256-9OouVSjPaI4MPIGh/ysr9OV/PQOx7a7YZNara1TXg7w=",
         "owner": "revol-xut",
         "repo": "bahn.bingo",
-        "rev": "2568b818fbe1cb9ece84c7fd43a697fb0f5f2a90",
+        "rev": "6f74fcff33b98b9fc3e568cab6f6a391aa23c9d4",
         "type": "github"
       },
       "original": {
