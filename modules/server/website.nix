@@ -14,6 +14,16 @@
             };
           };
         };
+        "files.tanneberger.me" = {
+          enableACME = true;
+          forceSSL = true;
+          http2 = true;
+          locations = {
+            "/" = {
+              root = "/var/lib/ftp/";
+            };
+          };
+        };
       };
     };
   };
