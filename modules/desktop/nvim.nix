@@ -1,8 +1,8 @@
 { pkgs, config, lib, ... }:
 with pkgs;
 let
-  nerdtree = fetchurl {
-    url = "https://gitea.tassilo-tanneberger.de/revol-xut/dotfiles/raw/branch/master/config/nvim/plugins/nerdtree.vim";
+  /*nerdtree = fetchurl {
+    url = "https://github.com/tanneberger/nix-config/dotfiles/raw/branch/master/config/nvim/plugins/nerdtree.vim";
     sha256 = "sha256-Xq0g2Q6pwKcFtnCieLPx8RLzZ0+93QQgYVEvsUQ8nj8=";
   };
   telescope = fetchurl {
@@ -13,7 +13,7 @@ let
     url = "https://gitea.tassilo-tanneberger.de/revol-xut/dotfiles/raw/branch/master/config/nvim/plugins/syntastic.vim";
     sha256 = "sha256-tgjofEa/WJsSuQtZj2QMACqQzN2K95AR9O9G+GeqHi0=";
   };
-
+	*/
 in
 {
   # Overlay to use the master build
@@ -31,10 +31,6 @@ in
         colorscheme dracula
         " delek
         set mouse=a
-
-        "configuration of some plugins
-        source ${telescope}
-        source ${syntastic}
 
         " Relativ Line Numbers
         set tabstop=4 shiftwidth=4 expandtab

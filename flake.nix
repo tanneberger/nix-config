@@ -32,7 +32,7 @@
     in
     {
       packages."aarch64-linux".einstein = self.nixosConfigurations.einstein.config.system.build.sdImage;
-      packages."x86_64-linux".schroedinger = self.nixosConfigurations.schroedinger.config.system.build.vm;
+      #packages."x86_64-linux".schroedinger = self.nixosConfigurations.schroedinger.config.system.build.vm;
 
       nixosConfigurations = {
         kirchhoff = buildSystem rec {
@@ -72,7 +72,7 @@
             }
           ];
         };
-        einstein = buildSystem {
+        /*einstein = buildSystem {
           system = "aarch64-linux";
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
@@ -89,8 +89,8 @@
               sdImage.compressImage = false;
             }
           ];
-        };
-        schroedinger = buildSystem {
+        };*/
+        /*schroedinger = buildSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
@@ -115,7 +115,7 @@
               ];
             }
           ];
-        };
+        };*/
         nextcloud-vm = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [

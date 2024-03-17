@@ -17,7 +17,9 @@
     "wg-dd-zone-seckey" = {
       owner = config.users.users.systemd-network.name;
     };
-
+    "wg-dd-ix-seckey" = {
+      owner = config.users.users.systemd-network.name;
+    };
   };
 
   networking = {
@@ -122,6 +124,39 @@
       routes = [
         { routeConfig = { Gateway = "10.13.37.1"; Destination = "10.13.37.0/24"; }; }
       ];
+    };
+
+    # Wireguard
+    # DD-IX
+    netdevs."30-wg-dd-ix" = {
+      netdevConfig = {
+        Kind = "wireguard";
+        Name = "wg-dd-ix";
+        Description = "dd-ix enterprise network";
+      };
+      wireguardConfig = {
+        PrivateKeyFile = config.sops.secrets."wg-dd-ix-seckey".path;
+      };
+      wireguardPeers = [
+        {
+          wireguardPeerConfig = {
+            PublicKey = "LWnCq1SjvhOtWAcTC37RppDS+r4GClXp5sG+fq+rIU4=";
+            Endpoint = "wg.dd-ix.net:443";
+            AllowedIPs = [ "2a01:7700:80b0::/48" ];
+            PersistentKeepalive = 25;
+          };
+        }
+      ];
+    };
+    networks."30-wg-dd-ix" = {
+      matchConfig.Name = "wg-dumpdvb";
+      networkConfig = {
+        Address = "2a01:7700:80b0:e000::3:1/64";
+        IPv6AcceptRA = true;
+      };
+      #routes = [
+      #  { routeConfig = { Gateway = "10.13.37.1"; Destination = "10.13.37.0/24"; }; }
+      #];
     };
 
     netdevs."30-wg-dd-zone" = {
