@@ -100,10 +100,10 @@ in
   systemd.user = {
     services.mbsync = {
       enable = true;
-      after = [ "graphical.target" ];
+      after = [ "graphical.target" ]; 
       script = ''
-        #${pkgs.isync}/bin/mbsync -a
         ${pkgs.isync}/bin/mbsync -a --config=${custom-mbsync-config}/bin/mbsync
+        #${pkgs.isync}/bin/mbsync -a
         #${pkgs.notmuch}/bin/notmuch new
         #${pkgs.libnotify}/bin/notify-send 'REEEEEE FUCK MAIL'
       '';

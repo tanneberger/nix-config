@@ -13,7 +13,6 @@
 
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "discord"
     "steam"
     "steam-original"
     "clion"
@@ -24,11 +23,13 @@
     "vscode"
     "obsidian"
   ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
 
-  boot = {
-    binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
-    #kernelPackages = pkgs.linuxKernel.packages.linux_5_15;
-  };
+  #boot = {
+  #  binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
+  #};
 
   time.timeZone = "Europe/Berlin";
 
@@ -151,7 +152,7 @@
     jetbrains.pycharm-community
 
     typst
-    discord
+    #discord
     neovim
     firefox-wayland
     direnv
@@ -166,6 +167,9 @@
     openssl
     pkg-config
     nodePackages_latest.pnpm
+    passExtensions.pass-otp
+    jdk17
+    fontconfig
   ];
 
   hardware = {
@@ -180,9 +184,10 @@
   ## direnv
   programs.bash.interactiveShellInit = ''eval "$(direnv hook bash)"'';
 
-  environment.shellInit = ''export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
-  '';
+  #environment.shellInit = ''
+  #  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  #  gpgconf --launch gpg-agent
+  #'';
   #environment.shellInit = ''
   #  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
   #'';

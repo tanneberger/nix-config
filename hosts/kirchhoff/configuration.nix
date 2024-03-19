@@ -1,4 +1,10 @@
-{ pkgs, config, lib, ... }: {
+{ pkgs, config, lib, ... }: 
+let
+  customKernelPackage = (config.boot.zfs.package.latestCompatibleLinuxPackages // {
+    foobar = pkgs.linuxKernel.packages.linux_6_6_hardened.zfs_2_1;
+  });
+
+in {
 
   imports = [
     ./hardware-configuration.nix
@@ -8,10 +14,8 @@
 
   boot = {
     initrd.kernelModules = [ "amdgpu" "ext4" ];
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    kernelParams = [
-      "nohibernate"
-    ];
+    kernelPackages = customKernelPackage;
+    kernelParams = [ "nohibernate" ];
 
     tmp = {
       useTmpfs = true;
@@ -27,7 +31,7 @@
     zfs.requestEncryptionCredentials = true;
   };
 
-  boot.kernel.sysctl."kernel.perf_event_paranoid" = 1;
+  #boot.kernel.sysctl."kernel.perf_event_paranoid" = 1;
   hardware.enableRedistributableFirmware = true;
 
   nix = {

@@ -48,7 +48,7 @@
         notmuch.enable = true;
         neomutt = {
           enable = true;
-          extraMailboxes = [ "All" "Sent" "Trash" "Drafts" "Kalender" "Notizen" "Kontakte" "Postausgang" ];
+          extraMailboxes = [ "Sent" "Trash" "Drafts" ];
           mailboxName = "tu-dresden";
           sendMailCommand = "${pkgs.msmtp}/bin/msmtp -a tu-dresden";
           extraConfig = ''

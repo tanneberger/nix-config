@@ -1,5 +1,5 @@
 { config, secrets, ... }: {
-  sops.secrets = {
+  /*sops.secrets = {
     "openconnect-tud" = {
       owner = "root";
     };
@@ -34,5 +34,5 @@
       };
       autoStart = false;
     };
-  };
+  };*/
 }

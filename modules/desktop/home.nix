@@ -6,7 +6,7 @@
   ];
   home.username = "revol-xut";
   home.homeDirectory = "/home/revol-xut";
-  home.stateVersion = "22.05";
+  home.stateVersion = "23.11";
 
   # Allow clion as unfree packag
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -38,7 +38,6 @@
     hexyl # hex editor
     abook # address book for neomutt
     lf # file explorer
-    newsboat # rss feed reader 
     unzip # extracting zip files
     zx # extracting .xz files
     marktext # markdown editor 
@@ -122,7 +121,6 @@
     rr
     #cgdb
 
-    spotify-qt
     spot
 
     nodejs # for npm used by chatvm
@@ -134,6 +132,17 @@
     yarn
     zotero
   ];
+  programs.gpg = {
+      enable = true;
+    };
+
+    services = {
+    gpg-agent = {
+      enable = true;
+      enableBashIntegration = true;
+    };
+    # ssh-agent.enable = true;
+  };
 
   programs = {
     fzf.enable = true; # fuzzy finder 
@@ -160,10 +169,9 @@
           hostname = "kaki.ifsr.de";
           user = "root";
         };
-        "tassilo" = {
-          hostname = "tassilo-tanneberger.de";
-          user = "revol-xut";
-          port = 1025;
+        "tanneberger" = {
+          hostname = "tanneberger.me";
+          user = "root";
         };
         "traffic-box-box" = {
           hostname = "10.13.37.100";
@@ -197,7 +205,7 @@
     git = {
       # versioning program
       enable = true;
-      userName = "revol-xut";
+      userName = "tanneberger";
       userEmail = "revol-xut@protonmail.com";
 
       signing = {

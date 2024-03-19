@@ -2,7 +2,7 @@ keys:
   - &revol-xut 91EBE87016391323642A6803B966009D57E69CC6
   - &schroedinger age12ftu76knsr7utvshqrrvnfr3dwusq7kqjemt3rhr8l4ccfmu25lqc3cdl5
   - &heisenberg age1at9c38tcggwu4t5xl0eyp24hqr53dsutd48tuwqg7jd0n467dupsap4drl
-  - &kirchhoff age1rz3klk0mp8kldea4v46cue7mjc94m2hfwchgjdfjarrmp38ygv3qztlsyh
+  - &kirchhoff age13lljlr232yu97u2evt9efssrthzaa74xg6lsqp06c0pnq2f3tefs8pt6e4
   - &planck age1qhzc4eem4fuju8v0wzzka9flvat37m2m7cs9qfk58l0y4nqw6fks2juydg
 creation_rules:
   - path_regex: secrets/schroedinger\.yaml$

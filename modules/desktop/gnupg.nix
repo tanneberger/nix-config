@@ -5,15 +5,21 @@
     gnupg
     opensc
 
-    yubikey-personalization-gui
+    #yubikey-personalization-gui
   ];
 
   # smartcard support
   # services.pcscd.enable = false;
-  hardware.gpgSmartcards.enable = true;
+  #hardware.gpgSmartcards.enable = true;
+  #programs.gpg = {
+  #    enable = true;
+  #};
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryPackage = lib.mkForce pkgs.pinentry-curses;
+    enableExtraSocket = true;
+    #enableBashIntegration = true;
+    #pinentryFlavor = "gnome3";
+    pinentryPackage = pkgs.pinentry-curses;
   };
 }

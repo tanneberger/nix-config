@@ -16,7 +16,6 @@
   fileSystems."/" =
     { device = "rpool/root/nixos";
       fsType = "zfs";
-      #options = [ "zfsutil" ];
     };
 
   fileSystems."/nix" =

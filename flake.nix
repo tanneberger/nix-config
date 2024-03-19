@@ -8,23 +8,39 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    c3d2-user-module.url = "git+https://gitea.c3d2.de/C3D2/nix-user-module.git";
-    nixos-hardware.url = github:NixOS/nixos-hardware/master;
-    fenix.url = "github:nix-community/fenix/monthly";
-    shikane.url = "gitlab:w0lff/shikane/nixification";
-    bahnbingo.url = "github:revol-xut/bahn.bingo";
+
+    c3d2-user-module = {
+      url = "git+https://gitea.c3d2.de/C3D2/nix-user-module.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-hardware = {
+      url = github:NixOS/nixos-hardware/master;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    fenix = {
+      url = "github:nix-community/fenix/monthly";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
+    shikane = {
+      url = "gitlab:w0lff/shikane/nixification";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    bahnbingo.url = "github:tanneberger/bahn.bingo";
     poettering = {
       url = "github:23x/poetti-soundsystem";
       flake = false;
     };
+
     microvm = {
       url = "github:astro/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
   outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, shikane, bahnbingo, poettering, microvm, ... }@inputs:
     let
@@ -64,7 +80,7 @@
               home-manager.extraSpecialArgs = { inherit system inputs; };
               home-manager.users.revol-xut = {
                 imports = [
-                  "${home-manager}/modules/accounts/email.nix"
+                  #"${home-manager}/modules/accounts/email.nix"
                   ./modules/desktop/home.nix
                   ./modules/desktop/neomutt.nix
                 ];

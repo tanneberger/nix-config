@@ -24,7 +24,7 @@
 
   networking = {
     hostName = "kirchhoff";
-    hostId = "045d0684";
+    hostId = "5d40cf06";
     enableIPv6 = true;
     useDHCP = lib.mkForce true;
     interfaces.enp1s0.useDHCP = true;
