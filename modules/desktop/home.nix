@@ -42,7 +42,8 @@
     zx # extracting .xz files
     marktext # markdown editor 
     pulsemixer # better pavucontrol
-    pass # password manager
+    #pass # password manager
+    #passExtensions.pass-otp
     ncmpcpp # console music player
     calcurse # calender tool
     btop # improved htop
@@ -91,7 +92,11 @@
     pure-prompt # fancy prompt
     wdisplays # configuring wayland displays
     texmaker
-    # rustup
+    helix
+    texlab
+    #clang
+
+    rustup
 
     # rust development
     # cargo
@@ -128,15 +133,15 @@
     terminus-nerdfont
     vscode
     obsidian
-    jdk17_headless
+    jdk17
     yarn
     zotero
   ];
   programs.gpg = {
-      enable = true;
-    };
+    enable = true;
+  };
 
-    services = {
+  services = {
     gpg-agent = {
       enable = true;
       enableBashIntegration = true;
@@ -210,6 +215,16 @@
 
       signing = {
         key = "91EBE87016391323642A6803B966009D57E69CC6";
+      };
+    };
+    helix = {
+      enable = true;
+      settings = {
+        theme = "base16";
+        editor = {
+          line-number = "relative";
+          lsp.display-messages = true;
+        };
       };
     };
 

@@ -1,4 +1,4 @@
-{pkgs, config, ...}: {
+{ pkgs, config, ... }: {
   services = {
     nginx = {
       enable = true;
@@ -10,7 +10,8 @@
           http2 = true;
           locations = {
             "/" = {
-              root = "/var/lib/website";
+              index = "index.html";
+              root = "${pkgs.website}/html";
             };
           };
         };

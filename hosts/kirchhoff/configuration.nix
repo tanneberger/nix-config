@@ -1,10 +1,4 @@
-{ pkgs, config, lib, ... }: 
-let
-  customKernelPackage = (config.boot.zfs.package.latestCompatibleLinuxPackages // {
-    foobar = pkgs.linuxKernel.packages.linux_6_6_hardened.zfs_2_1;
-  });
-
-in {
+{ pkgs, config, lib, ... }: {
 
   imports = [
     ./hardware-configuration.nix
@@ -14,7 +8,7 @@ in {
 
   boot = {
     initrd.kernelModules = [ "amdgpu" "ext4" ];
-    kernelPackages = customKernelPackage;
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     kernelParams = [ "nohibernate" ];
 
     tmp = {

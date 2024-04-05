@@ -4,14 +4,14 @@
 
   services.postgresql = {
     enable = true;
-    ensureUsers = [
-      {
+    ensureUsers = [{
         name = "nextcloud";
-        ensurePermissions = {
-          "DATABASE nextcloud" = "ALL PRIVILEGES";
-        };
-      }
-    ];
+        ensureDBOwnership = true;
+        #ensurePasswordFile = config.sops.secrets.nextcloud_db_pass.path;
+    }];
+    settings = {
+      ssl = true;
+    };
     ensureDatabases = [ "nextcloud" ];
   };
 

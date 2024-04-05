@@ -41,8 +41,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    website = {
+      url = "github:tanneberger/website";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, shikane, bahnbingo, poettering, microvm, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, shikane, bahnbingo, poettering, microvm, website, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -68,9 +73,9 @@
             ./modules/desktop/docker.nix
             ./modules/desktop/tu-vpn.nix
             c3d2-user-module.nixosModule
-            {
+            { 
               environment.systemPackages = [
-                fenix.packages.x86_64-linux.stable.toolchain
+                fenix.packages.x86_64-linux.stable.completeToolchain
               ];
 
               c3d2.audioStreaming = true;
@@ -106,7 +111,7 @@
             }
           ];
         };*/
-        /*schroedinger = buildSystem {
+        schroedinger = buildSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
@@ -125,13 +130,14 @@
                 (final: prev: {
                   poettering = poettering;
                 })
+                website.overlays.default
               ];
               microvm.autostart = [
                 "nextcloud-vm"
               ];
             }
           ];
-        };*/
+        };
         nextcloud-vm = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [

@@ -3,9 +3,9 @@
     "openconnect-tud" = {
       owner = "root";
     };
-  };
+    };
 
-  networking.openconnect.interfaces = {
+    networking.openconnect.interfaces = {
     tud = {
       user = "tata551d@tu-dresden.de";
       protocol = "anyconnect";

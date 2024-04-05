@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }: {
 
   environment.systemPackages = with pkgs; [
-    iwgtk
+    #iwgtk
   ];
 
   sops.secrets = {
@@ -26,24 +26,28 @@
     hostName = "kirchhoff";
     hostId = "5d40cf06";
     enableIPv6 = true;
-    useDHCP = lib.mkForce true;
-    interfaces.enp1s0.useDHCP = true;
-    interfaces.wlan0.useDHCP = true;
-    interfaces.james.useDHCP = true;
-    useNetworkd = true;
+    #useDHCP = lib.mkForce true;
+    #interfaces.enp1s0.useDHCP = true;
+    #interfaces.wlan0.useDHCP = true;
+    #interfaces.james.useDHCP = true;
+    useNetworkd = false;
 
     wireguard.enable = true;
-
-    wireless.iwd = {
-      enable = true;
-    };
+    #wireless = {
+    #  enable = true;
+    #  userControlled.enable = true;
+    #};
+    networkmanager.enable = true;
+    #wireless.iwd = {
+    #  enable = true;
+    #};
   };
 
-  services.resolved = {
-    enable = true;
-    dnssec = "false";
-    fallbackDns = [ "1.1.1.1" ];
-  };
+  #services.resolved = {
+  #  enable = true;
+  #  dnssec = "false";
+  #  fallbackDns = [ "1.1.1.1" ];
+  #};
 
   # workaround for networkd waiting for shit
   systemd.services.systemd-networkd-wait-online.serviceConfig.ExecStart = [
@@ -52,7 +56,7 @@
   ];
 
   systemd.network = {
-    enable = true;
+    enable = false;
 
     # wait-online.ignoredInterfaces = [ "wlan0" "enp53s0" ];
 

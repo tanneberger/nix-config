@@ -16,15 +16,22 @@
     "steam"
     "steam-original"
     "clion"
+    "rust-rover"
     "webstorm"
     "zoom"
     "minecraft-launcher"
     "prismlauncher"
     "vscode"
     "obsidian"
+    "discord"
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
+  ];
+
+  i18n.supportedLocales = [
+    "en_US.UTF-8/UTF-8"
+    "de_DE.UTF-8/UTF-8"
   ];
 
   #boot = {
@@ -44,6 +51,7 @@
       "dialout"
       "bluetooth"
       "audio"
+      "networkmanager"
     ];
     initialPassword = "start_default_password_9#2";
     shell = pkgs.zsh;
@@ -61,14 +69,14 @@
     ];
     settings = {
       auto-optimise-store = true;
-      substituters = [
-        "https://dump-dvb.cachix.org"
-        "https://nix-cache.hq.c3d2.de"
-      ];
-      trusted-public-keys = [
-        "dump-dvb.cachix.org-1:+Dq7gqpQG4YlLA2X3xJsG1v3BrlUGGpVtUKWk0dTyUU="
-        "nix-cache.hq.c3d2.de:KZRGGnwOYzys6pxgM8jlur36RmkJQ/y8y62e52fj1ps="
-      ];
+      #substituters = [
+      #  "https://dump-dvb.cachix.org"
+      #  "https://nix-cache.hq.c3d2.de"
+      #];
+      #trusted-public-keys = [
+      #  "dump-dvb.cachix.org-1:+Dq7gqpQG4YlLA2X3xJsG1v3BrlUGGpVtUKWk0dTyUU="
+      #  "nix-cache.hq.c3d2.de:KZRGGnwOYzys6pxgM8jlur36RmkJQ/y8y62e52fj1ps="
+      #];
     };
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -80,9 +88,9 @@
     accounts-daemon.enable = true;
     printing.enable = true;
     illum.enable = true;
-    yubikey-agent = {
-      enable = true;
-    };
+    #yubikey-agent = {
+    #  enable = true;
+    #};
     weechat = {
       enable = true;
     };
@@ -148,11 +156,12 @@
     font-awesome_5
     unicode-emoji
     jetbrains.clion
+    jetbrains.rust-rover
     jetbrains.webstorm
     jetbrains.pycharm-community
 
     typst
-    #discord
+    discord
     neovim
     firefox-wayland
     direnv
@@ -167,9 +176,15 @@
     openssl
     pkg-config
     nodePackages_latest.pnpm
+    passExtensions.pass-genphrase
+    passExtensions.pass-import
     passExtensions.pass-otp
+    passExtensions.pass-tomb
+    passExtensions.pass-update
+    (pass.withExtensions (ext: with ext; [ pass-otp pass-import pass-genphrase pass-update pass-tomb ]))
     jdk17
     fontconfig
+    rustup
   ];
 
   hardware = {
