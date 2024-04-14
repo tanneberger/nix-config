@@ -9,6 +9,7 @@
     ./xscreen-config.nix
     ./mpd.nix
     ./mail.nix
+    ./podman.nix
   ];
 
   nixpkgs.config.allowBroken = true;

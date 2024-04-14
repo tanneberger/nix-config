@@ -265,6 +265,12 @@
         # change the path color
         zstyle :prompt:pure:git:branch color red
         prompt pure
+
+        export PNPM_HOME="/home/revol-xut/.local/share/pnpm"
+        case ":$PATH:" in
+          *":$PNPM_HOME:"*) ;;
+          *) export PATH="$PNPM_HOME:$PATH" ;;
+        esac
       '';
     };
 

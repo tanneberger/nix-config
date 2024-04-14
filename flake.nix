@@ -45,9 +45,12 @@
       url = "github:tanneberger/website";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lf = {
+      url = "github:icyphy/satellite-attitude-control";
+    };
 
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, shikane, bahnbingo, poettering, microvm, website, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, shikane, bahnbingo, poettering, microvm, website, lf, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -121,9 +124,11 @@
             ./modules/server/bahnbingo.nix
             ./modules/server/poettering.nix
             ./modules/server/website.nix
+            ./modules/server/lf.nix
             sops-nix.nixosModules.sops
             bahnbingo.nixosModules.default
             microvm.nixosModules.host
+            lf.nixosModules.default
             {
               nixpkgs.overlays = [
                 bahnbingo.overlays.default
@@ -131,6 +136,7 @@
                   poettering = poettering;
                 })
                 website.overlays.default
+                lf.overlays.default
               ];
               microvm.autostart = [
                 "nextcloud-vm"
