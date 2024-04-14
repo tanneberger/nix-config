@@ -11,7 +11,11 @@
           locations = {
             "/" = {
               index = "index.html";
-              root = "${pkgs.lf-website}/html";
+              root = "${pkgs.lf-frontend}/html";
+            };
+            "/websocket" = {
+              proxyPass = "http://127.0.0.1:8080";
+              proxyWebsockets = true;
             };
           };
         };
