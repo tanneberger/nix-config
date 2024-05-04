@@ -1,7 +1,6 @@
 { config, pkgs, lib, options, ... }:
 {
   imports = [
-    ./docker.nix
     ./certs.nix
     ./dvb-dump-nfs-automount.nix
     ./pipewire.nix
@@ -9,8 +8,20 @@
     ./xscreen-config.nix
     ./mpd.nix
     ./mail.nix
-    ./podman.nix
+    #./docker.nix
+    #./podman.nix
   ];
+
+  virtualisation.docker = {
+    enable = false;
+    enableOnBoot = true;
+    rootless = {
+      enable = true;
+    };
+  };
+  #users.users.revol-xut.extraGroups = [ "docker" ];
+  #environment.systemPackages = with pkgs; [ docker-compose ];
+
 
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -53,6 +64,7 @@
       "bluetooth"
       "audio"
       "networkmanager"
+      "docker"
     ];
     initialPassword = "start_default_password_9#2";
     shell = pkgs.zsh;
@@ -63,7 +75,7 @@
   environment.sessionVariables = { GTK_THEME = "Adwaita:dark"; };
 
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
     nixPath = [
       "nixpkgs=${pkgs.path}"
       "nixos-config=/etc/nixos/configuration.nix"
@@ -111,13 +123,15 @@
     dejavu_fonts
     font-awesome
     font-awesome_5
-    nerdfonts
+    #nerdfonts
     stix-two
     stix-otf
     open-sans
   ];
 
   environment.systemPackages = with pkgs; [
+    docker-compose
+    docker
     git # versioning tool
     vim # vim editor
     htop # resource monitor
@@ -222,6 +236,20 @@
     ssh = {
       startAgent = false;
     };
+  };
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+      gtkUsePortal = true;
+    };
+  };
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-wayland;
   };
 }
 

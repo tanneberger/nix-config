@@ -73,7 +73,6 @@
             ./modules/desktop/gnupg.nix
             ./modules/desktop/base.nix
             ./modules/server/sops.nix
-            ./modules/desktop/docker.nix
             ./modules/desktop/tu-vpn.nix
             c3d2-user-module.nixosModule
             { 
