@@ -24,13 +24,16 @@
     };
     fenix = {
       url = "github:nix-community/fenix/monthly";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     shikane = {
       url = "gitlab:w0lff/shikane/nixification";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    bahnbingo.url = "github:tanneberger/bahn.bingo";
+    bahnbingo = {
+      url = "github:tanneberger/bahn.bingo";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     poettering = {
       url = "github:23x/poetti-soundsystem";
       flake = false;
@@ -47,10 +50,15 @@
     };
     lf = {
       url = "github:icyphy/satellite-attitude-control";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dresden-zone-nvim = {
+      url = "github:dresden-zone/nvim.nix/nixos-unstable";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, shikane, bahnbingo, poettering, microvm, website, lf, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, shikane, bahnbingo, poettering, microvm, website, lf, dresden-zone-nvim, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -76,9 +84,12 @@
             ./modules/desktop/tu-vpn.nix
             c3d2-user-module.nixosModule
             { 
-              environment.systemPackages = [
-                fenix.packages.x86_64-linux.stable.completeToolchain
+              nixpkgs.overlays = [
+                fenix.overlays.default
               ];
+              #environment.systemPackages = [
+              #  fenix.packages.x86_64-linux.stable.completeToolchain
+              #];
 
               c3d2.audioStreaming = true;
 
@@ -87,9 +98,10 @@
               home-manager.extraSpecialArgs = { inherit system inputs; };
               home-manager.users.revol-xut = {
                 imports = [
-                  #"${home-manager}/modules/accounts/email.nix"
+                  dresden-zone-nvim.homeManagerModules.nvim
                   ./modules/desktop/home.nix
                   ./modules/desktop/neomutt.nix
+                  #./modules/desktop/nvim
                 ];
               };
             }
@@ -124,6 +136,7 @@
             ./modules/server/poettering.nix
             ./modules/server/website.nix
             ./modules/server/lf.nix
+            ./modules/server/lasr-web.nix
             sops-nix.nixosModules.sops
             bahnbingo.nixosModules.default
             microvm.nixosModules.host
