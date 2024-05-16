@@ -46,6 +46,8 @@
     enable = true;
     settings.PasswordAuthentication = false;
   };
+  
+  networking.firewall.enable = true;
 
   programs.mosh.enable = true;
 }

@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }: 
 let 
   cms-addr = "127.0.0.1";
-  cms-port = 8000;
+  cms-port = 8090;
 in {
 
   virtualisation.docker = {
@@ -32,15 +32,11 @@ in {
             "/" = {
               proxyPass = "http://${cms-addr}:${toString cms-port}/";
             };
-
-            "/cms" = {
-              proxyPass = "http://${cms-addr}:${toString cms-port}/";
-            };
           };
         };
       };
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
