@@ -16,6 +16,7 @@
     "steam-original"
     "zoom"
     "vscode"
+    "phpstorm"
   ];
 
   home.packages = with pkgs; [

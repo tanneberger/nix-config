@@ -36,6 +36,7 @@
     "vscode"
     "obsidian"
     "discord"
+    "phpstorm"
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
@@ -174,7 +175,7 @@
     jetbrains.rust-rover
     jetbrains.webstorm
     jetbrains.pycharm-community
-
+    jetbrains.phpstorm
     typst
     discord
     neovim
@@ -201,6 +202,7 @@
     fontconfig
     rustup
     ripgrep
+    virtualbox
 
     fenix.stable.completeToolchain
   ];
