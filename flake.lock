@@ -689,11 +689,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1716274770,
-        "narHash": "sha256-uljGfzFKetmvwYyfMCa3WY7jZbRnN/g7C/qk0/bKsWA=",
+        "lastModified": 1716294469,
+        "narHash": "sha256-1RdJkVa+axdzLhbeoWJoC3BPODxfx+/Rv7HE+e4CK/Y=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "c9f3d15796c80c336662e9dd2a0d6820e5fa2841",
+        "rev": "1c9f2a23a6cb9406c35980f4af1a4356f56771e9",
         "type": "github"
       },
       "original": {
@@ -1180,11 +1180,11 @@
         "pnpm2nix": "pnpm2nix_2"
       },
       "locked": {
-        "lastModified": 1716280260,
-        "narHash": "sha256-+JDrtTd2Q00KkBG0eGkxs+zeXnxK/0IirB9yMGO+Q04=",
+        "lastModified": 1716296272,
+        "narHash": "sha256-chGsnVHObWpS8LgZ8hgQmws0J8Lw6oaPh1ZzA0yfwyw=",
         "owner": "tanneberger",
         "repo": "website",
-        "rev": "3fcda6ecfe13ffee44e0585bd4c24ed509e37a04",
+        "rev": "2f1a97bd9e0390f0e4718c604bd97f52cef19ada",
         "type": "github"
       },
       "original": {

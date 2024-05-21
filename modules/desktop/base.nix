@@ -66,6 +66,7 @@
       "audio"
       "networkmanager"
       "docker"
+      "vboxusers"
     ];
     initialPassword = "start_default_password_9#2";
     shell = pkgs.zsh;
@@ -202,10 +203,12 @@
     fontconfig
     rustup
     ripgrep
-    virtualbox
 
     fenix.stable.completeToolchain
   ];
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.guest.enable = true;
+  
 
   hardware = {
     hackrf.enable = true;
