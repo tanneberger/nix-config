@@ -5,6 +5,9 @@
       recommendedProxySettings = true;
       virtualHosts = {
         "lf.tanneberger.me" = {
+          globalRedirect = "fsw24.tanneberger.me";
+        };
+        "fsw24.tanneberger.me" = {
           enableACME = true;
           forceSSL = true;
           http2 = true;
