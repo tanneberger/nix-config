@@ -8,10 +8,10 @@
     ./xscreen-config.nix
     ./mpd.nix
     ./mail.nix
-    #./docker.nix
+    ./docker.nix
     #./podman.nix
   ];
-
+  #virtualisation.enable = true;
   virtualisation.docker = {
     enable = false;
     enableOnBoot = true;
@@ -133,7 +133,6 @@
 
   environment.systemPackages = with pkgs; [
     docker-compose
-    docker
     git # versioning tool
     vim # vim editor
     htop # resource monitor
@@ -173,10 +172,10 @@
     font-awesome_5
     unicode-emoji
     jetbrains.clion
-    jetbrains.rust-rover
-    jetbrains.webstorm
-    jetbrains.pycharm-community
-    jetbrains.phpstorm
+    #jetbrains.rust-rover
+    #jetbrains.webstorm
+    #jetbrains.pycharm-community
+    #jetbrains.phpstorm
     typst
     discord
     neovim

@@ -2,24 +2,22 @@
   description = "revol-xut's NixOS and Home Mananger configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     c3d2-user-module = {
       url = "git+https://gitea.c3d2.de/C3D2/nix-user-module.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware = {
-      url = github:NixOS/nixos-hardware/master;
+      url = "github:NixOS/nixos-hardware/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fenix = {
@@ -38,12 +36,10 @@
       url = "github:23x/poetti-soundsystem";
       flake = false;
     };
-
     microvm = {
       url = "github:astro/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     website = {
       url = "github:tanneberger/website";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,7 +50,6 @@
     };
     dresden-zone-nvim = {
       url = "github:dresden-zone/nvim.nix/nixos-unstable";
-      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
