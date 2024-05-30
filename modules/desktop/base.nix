@@ -172,8 +172,8 @@
     font-awesome_5
     unicode-emoji
     jetbrains.clion
-    #jetbrains.rust-rover
-    #jetbrains.webstorm
+    jetbrains.rust-rover
+    jetbrains.webstorm
     #jetbrains.pycharm-community
     #jetbrains.phpstorm
     typst
