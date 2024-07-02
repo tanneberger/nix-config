@@ -151,6 +151,7 @@
   };
 
   programs = {
+    nixvim.enable = true;
     fzf.enable = true; # fuzzy finder 
     alacritty = {
       enable = true;
@@ -159,6 +160,10 @@
       forwardAgent = true;
       enable = true; # ssh
       matchBlocks = {
+        "demo" = {
+           hostname = "192.168.178.69";
+           user = "demo";
+        };
         "espresso" = {
           hostname = "espresso.ascii.coffee";
           user = "root";
@@ -229,6 +234,7 @@
       };
     };
 
+
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -290,10 +296,10 @@
     };
   };
   home.sessionVariables = {
-      MOZ_ENABLE_WAYLAND = "1";
-      MOZ_USE_XINPUT2 = "1";
-      XDG_SESSION_TYPE = "wayland";
-      XDG_CURRENT_DESKTOP = "sway";
+    MOZ_ENABLE_WAYLAND = "1";
+    MOZ_USE_XINPUT2 = "1";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_CURRENT_DESKTOP = "sway";
   };
 }
 

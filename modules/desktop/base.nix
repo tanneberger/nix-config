@@ -11,17 +11,6 @@
     ./docker.nix
     #./podman.nix
   ];
-  #virtualisation.enable = true;
-  virtualisation.docker = {
-    enable = false;
-    enableOnBoot = true;
-    rootless = {
-      enable = true;
-    };
-  };
-  #users.users.revol-xut.extraGroups = [ "docker" ];
-  #environment.systemPackages = with pkgs; [ docker-compose ];
-
 
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -40,12 +29,15 @@
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
+    "segger-jlink-qt4-794l"
   ];
 
   i18n.supportedLocales = [
     "en_US.UTF-8/UTF-8"
     "de_DE.UTF-8/UTF-8"
   ];
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.segger-jlink.acceptLicense = true;
 
   #boot = {
   #  binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
@@ -132,6 +124,10 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    nrf-command-line-tools
+    nrfconnect
+    #nrf-udev
+    #nrfutil
     docker-compose
     git # versioning tool
     vim # vim editor
@@ -207,7 +203,7 @@
   ];
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.guest.enable = true;
-  
+
 
   hardware = {
     hackrf.enable = true;

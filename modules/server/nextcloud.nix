@@ -5,9 +5,9 @@
   services.postgresql = {
     enable = true;
     ensureUsers = [{
-        name = "nextcloud";
-        ensureDBOwnership = true;
-        #ensurePasswordFile = config.sops.secrets.nextcloud_db_pass.path;
+      name = "nextcloud";
+      ensureDBOwnership = true;
+      #ensurePasswordFile = config.sops.secrets.nextcloud_db_pass.path;
     }];
     ensureDatabases = [ "nextcloud" ];
   };

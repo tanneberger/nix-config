@@ -48,12 +48,18 @@
       url = "github:icyphy/satellite-attitude-control";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dresden-zone-nvim = {
-      url = "github:dresden-zone/nvim.nix/nixos-unstable";
+    nixvim.url = "github:nix-community/nixvim/nixos-24.05";
+    nvim = {
+      url = "github:NuschtOS/nvim.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+      inputs.home-manager-stable.follows = "home-manager";
+      inputs.nixvim.follows = "nixvim";
+      inputs.nixvim-stable.follows = "nixvim";
     };
-
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, shikane, bahnbingo, poettering, microvm, website, lf, dresden-zone-nvim, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, shikane, bahnbingo, poettering, microvm, website, lf, nvim, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -78,7 +84,7 @@
             ./modules/server/sops.nix
             ./modules/desktop/tu-vpn.nix
             c3d2-user-module.nixosModule
-            { 
+            {
               nixpkgs.overlays = [
                 fenix.overlays.default
               ];
@@ -93,7 +99,7 @@
               home-manager.extraSpecialArgs = { inherit system inputs; };
               home-manager.users.revol-xut = {
                 imports = [
-                  dresden-zone-nvim.homeManagerModules.nvim
+                  nvim.homeManagerModules.nvim
                   ./modules/desktop/home.nix
                   ./modules/desktop/neomutt.nix
                   #./modules/desktop/nvim

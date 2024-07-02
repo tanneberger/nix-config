@@ -1,6 +1,7 @@
 { pkgs, config, lib, ... }: {
   virtualisation.docker = {
-    enable = false;
+    enable = true;
+    #enableOnBoot = true;
     #rootless = {
     #  enable = true;
     #};

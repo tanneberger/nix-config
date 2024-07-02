@@ -25,7 +25,7 @@ in {
       enable = true;
       recommendedProxySettings = true;
       virtualHosts = {
-        "lasr.tanneberger.me" = {
+        "lasr.org" = {
           forceSSL = true;
           enableACME = true;
           locations = {
@@ -34,6 +34,16 @@ in {
             };
           };
         };
+	"lasr.tanneberger.me" = {
+          forceSSL = true;
+          enableACME = true;
+          locations = {
+            "/" = {
+              proxyPass = "http://${cms-addr}:${toString cms-port}/";
+            };
+          };
+        };
+
       };
     };
   };

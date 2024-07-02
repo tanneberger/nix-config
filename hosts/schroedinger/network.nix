@@ -12,8 +12,6 @@
     useDHCP = true;
     interfaces.enp1s0.useDHCP = true;
     useNetworkd = true;
-
-    wireguard.enable = true;
   };
 
   services.resolved = {
@@ -40,6 +38,18 @@
         #PrimaryReselectPolicy = "always";
         #MIIMonitorSec = "1s";
       };
+      addresses = [
+        {
+          addressConfig = {
+            Address = "88.198.121.105/32";
+          };
+        }
+        {
+          addressConfig = {
+            Address = "2a01:4f8:c012:f7d1::/64";
+          };
+        }
+      ];
     };
   };
 }
