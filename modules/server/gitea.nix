@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ config, ... }: {
   sops.secrets.gitea_db_pass.owner = config.systemd.services.gitea.serviceConfig.User;
   services = {
     gitea = {

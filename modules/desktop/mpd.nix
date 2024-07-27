@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ ... }:
 let
   home = "/home/revol-xut";
 in

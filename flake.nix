@@ -63,7 +63,7 @@
       inputs.nixvim-stable.follows = "nixvim";
     };
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, shikane, bahnbingo, poettering, microvm, website, lf, nvim, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, bahnbingo, poettering, microvm, website, lf, nvim, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -149,7 +149,7 @@
             {
               nixpkgs.overlays = [
                 bahnbingo.overlays.default
-                (final: prev: {
+                (_final: _prev: {
                   poettering = poettering;
                 })
                 website.overlays.default

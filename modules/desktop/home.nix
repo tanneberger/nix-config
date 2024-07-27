@@ -50,7 +50,6 @@
     btop # improved htop
     qutebrowser # superiour vim browser
     tdesktop # normal telegram desktop
-    slack-term # terminal client for slack (REMOVE Weechat)
     # pdfpc # tool for presentations TODO: borked
     #lynx # text based browser
     gopher # very nice 1900s protocoll
@@ -59,7 +58,6 @@
     notmuch # mail indexing
     notmuch-mutt # notmuch integration for mutt
     isync # email sync
-    weechat # minimal terminal irc and matrix client
     dino # better xmpp client
     silver-searcher # pretty alternative to rgrep
     tree # prinint tree of directory
@@ -85,6 +83,7 @@
     ipcalc # tool to calculate ip prefixes
     tcpdump # watching netdevs
     mtr # better traceroute
+    whois # whois tooling
 
     pciutils # checking connected pcidevices
     usbutils # lsusb
@@ -128,7 +127,6 @@
     #cgdb
 
     spot
-
     nodejs # for npm used by chatvm
     nodePackages.prettier # for formatting
     terminus-nerdfont
@@ -161,8 +159,8 @@
       enable = true; # ssh
       matchBlocks = {
         "demo" = {
-           hostname = "192.168.178.69";
-           user = "demo";
+          hostname = "192.168.178.69";
+          user = "demo";
         };
         "espresso" = {
           hostname = "espresso.ascii.coffee";
@@ -238,8 +236,12 @@
     zsh = {
       enable = true;
       enableCompletion = true;
-      enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+      autosuggestion = {
+        enable = true;
+      };
+      syntaxHighlighting = {
+        enable = true;
+      };
       history.save = 1000000;
       autocd = true;
       shellAliases = {

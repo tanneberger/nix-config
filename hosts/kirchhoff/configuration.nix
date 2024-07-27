@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ pkgs, config, ... }: {
 
   imports = [
     ./hardware-configuration.nix
@@ -63,7 +63,8 @@
     '';
   };
   services.gvfs.enable = true;
-
+  services.devmon.enable = true;
+  services.udisks2.enable = true;
   security.rtkit.enable = true;
 
   hardware.bluetooth.enable = true;
@@ -87,6 +88,17 @@
     algorithm = "zstd";
   };
 
+  systemd.services."usb-mount@" = {
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      ${pkgs.coreutils-full}/bin/mount -m /dev/%i /media/revol-xut/%i
+      ${pkgs.coreutils-full}/bin/chown -R revol-xut /media/revol-xut/%i
+    '';
+  };
+
   boot.binfmt.emulatedSystems = [ "riscv32-linux" ];
   services.udev.extraRules = ''
     # MCH2022 Badge
@@ -98,7 +110,11 @@
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", ATTRS{manufacturer}=="STMicroelectronics", TAG+="uaccess"
     #Flipper ESP32s2 BlackMagic
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="40??", ATTRS{manufacturer}=="Flipper Devices Inc.", TAG+="uaccess"
+
+    KERNEL=="sd[a-z][0-9]", SUBSYSTEMS=="usb", ACTION=="add", RUN+="${pkgs.systemd}/bin/systemctl --no-block start usb-mount@%k.service" KERNEL=="sd[a-z][0-9]", SUBSYSTEMS=="usb", ACTION=="remove", RUN+="${pkgs.systemd}/bin/systemctl --no-block stop usb-mount@%k.service"
   '';
+  # 
+  # ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", RUN{program}+="${pkgs.systemd}/bin/systemd-mount --no-block --automount=yes --collect $devnode /media/revol-xut/ && ${pkgs.coreutils-full}/bin/chown -R revol-xut /media/revol-xut/"
 
   #services.thinkfan = {
   #  enable = true;

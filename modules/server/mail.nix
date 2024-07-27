@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ config, ... }: {
   sops.secrets = {
     "mailserver-tassilo".owner = config.users.users.postfix.name;
   };

@@ -1,8 +1,9 @@
-{ pkgs, config, lib, ... }: 
-let 
+{ ... }:
+let
   cms-addr = "127.0.0.1";
   cms-port = 8090;
-in {
+in
+{
 
   virtualisation.docker = {
     enable = true;
@@ -34,7 +35,7 @@ in {
             };
           };
         };
-	"lasr.tanneberger.me" = {
+        "lasr.tanneberger.me" = {
           forceSSL = true;
           enableACME = true;
           locations = {

@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ config, ... }: {
   sops.secrets = {
     "wg-hole-seckey" = {
       owner = config.users.users.systemd-network.name;

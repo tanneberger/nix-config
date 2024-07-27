@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   alarm-clock = pkgs.callPackage ../pkgs/clock.nix {
     mkDerivation = pkgs.stdenv.mkDerivation;

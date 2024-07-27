@@ -1,5 +1,4 @@
-{ pkgs
-, lib
+{ lib
 , mkDerivation
 , fetchFromGitHub
 , jdk11_headless

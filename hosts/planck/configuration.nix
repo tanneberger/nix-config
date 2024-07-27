@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ ... }: {
   #TODO:
 
   networking.hostName = "planck";

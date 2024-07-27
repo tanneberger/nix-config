@@ -1,15 +1,12 @@
-{ config, pkgs, lib, options, ... }:
+{ config, pkgs, lib, ... }:
 {
   imports = [
     ./certs.nix
     ./dvb-dump-nfs-automount.nix
     ./pipewire.nix
-    ./weechat.nix
-    ./xscreen-config.nix
     ./mpd.nix
     ./mail.nix
     ./docker.nix
-    #./podman.nix
   ];
 
   nixpkgs.config.allowBroken = true;
@@ -59,6 +56,7 @@
       "networkmanager"
       "docker"
       "vboxusers"
+      "storage"
     ];
     initialPassword = "start_default_password_9#2";
     shell = pkgs.zsh;
@@ -113,22 +111,15 @@
   fonts.fontconfig = {
     enable = true;
   };
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     dejavu_fonts
     font-awesome
-    font-awesome_5
-    #nerdfonts
     stix-two
     stix-otf
     open-sans
   ];
 
   environment.systemPackages = with pkgs; [
-    nrf-command-line-tools
-    nrfconnect
-    #nrf-udev
-    #nrfutil
-    docker-compose
     git # versioning tool
     vim # vim editor
     htop # resource monitor
@@ -148,7 +139,6 @@
     gqrx # radio tooling
     hackrf # hackrf slides
     rtl-sdr # lib rtl-sdr
-    # barrel # lingua-franca tool
     wpa_supplicant_gui
     jq # json tool
     qFlipper # tool for flipper zero
@@ -170,12 +160,10 @@
     jetbrains.clion
     jetbrains.rust-rover
     jetbrains.webstorm
-    #jetbrains.pycharm-community
-    #jetbrains.phpstorm
     typst
     discord
     neovim
-    firefox-wayland
+    firefox
     direnv
     #(nix-direnv.override { enableFlakes = true; })
     nix-direnv
@@ -201,8 +189,6 @@
 
     fenix.stable.completeToolchain
   ];
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.guest.enable = true;
 
 
   hardware = {
@@ -216,14 +202,6 @@
 
   ## direnv
   programs.bash.interactiveShellInit = ''eval "$(direnv hook bash)"'';
-
-  #environment.shellInit = ''
-  #  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-  #  gpgconf --launch gpg-agent
-  #'';
-  #environment.shellInit = ''
-  #  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-  #'';
 
   programs = {
     mosh.enable = true;
@@ -240,9 +218,10 @@
       startAgent = false;
     };
   };
+
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-wayland;
+    package = pkgs.firefox;
   };
 }
 

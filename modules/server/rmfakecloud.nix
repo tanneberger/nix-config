@@ -1,4 +1,4 @@
-{ pkgs, config, lib, mkYarnPackage, ... }:
+{ pkgs, config, mkYarnPackage, ... }:
 let
 
 

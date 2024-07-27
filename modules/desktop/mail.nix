@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, ... }:
 let
   custom-mbsync-config = (pkgs.writeScriptBin "mbsync" ''
     IMAPAccount dd-ix

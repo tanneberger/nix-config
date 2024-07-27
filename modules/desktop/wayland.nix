@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ pkgs, ... }: {
   programs = {
     xwayland.enable = true;
     sway = {
@@ -23,12 +23,12 @@
     };
   };
 
-  services.xserver.xkbOptions = "compose:ralt";
+  services.xserver.xkb.options = "compose:ralt";
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = true;
 
-  services.xserver.displayManager.defaultSession = "sway";
+  services.displayManager.defaultSession = "sway";
 
   xdg.portal = {
     wlr.enable = true;

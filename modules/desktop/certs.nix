@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ ... }: {
   # writing the certificate to the system
   security.pki.certificates = [
     ''  

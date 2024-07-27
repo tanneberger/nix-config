@@ -1,4 +1,4 @@
-{ config, secrets, ... }: {
+{ ... }: {
   /*sops.secrets = {
     "openconnect-tud" = {
       owner = "root";

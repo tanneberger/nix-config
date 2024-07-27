@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   home.file.".config/neomutt/mailcap".source = ../../dotfiles/neomutt/mailcap;
 
