@@ -35,6 +35,15 @@ in
             };
           };
         };
+        "www.lasr.org" = {
+          forceSSL = true;
+          enableACME = true;
+          locations = {
+            "/" = {
+              proxyPass = "http://${cms-addr}:${toString cms-port}/";
+            };
+          };
+        };
         "lasr.tanneberger.me" = {
           forceSSL = true;
           enableACME = true;
