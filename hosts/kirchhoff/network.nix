@@ -37,7 +37,10 @@
     #  enable = true;
     #  userControlled.enable = true;
     #};
-    networkmanager.enable = true;
+    networkmanager = {
+      wifi.scanRandMacAddress = false;
+      enable = true;
+    };
     #wireless.iwd = {
     #  enable = true;
     #};

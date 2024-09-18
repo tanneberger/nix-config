@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -54,7 +56,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     nvim = {
-      url = "github:NuschtOS/nvim.nix";
+      url = "github:NuschtOS/nvim.nix/nixos-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
@@ -63,7 +65,7 @@
       inputs.nixvim-stable.follows = "nixvim";
     };
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, bahnbingo, poettering, microvm, website, lf, nvim, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, bahnbingo, poettering, microvm, website, lf, nvim, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -91,7 +93,14 @@
             {
               nixpkgs.overlays = [
                 fenix.overlays.default
+                (final: prev: {
+                  unstable = import nixpkgs-unstable {
+                    system = prev.system;
+                    config = prev.config;
+                  };
+                })
               ];
+            
               #environment.systemPackages = [
               #  fenix.packages.x86_64-linux.stable.completeToolchain
               #];

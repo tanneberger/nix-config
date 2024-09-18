@@ -62,19 +62,24 @@
       builders-use-substitutes = true
     '';
   };
-  services.gvfs.enable = true;
-  services.devmon.enable = true;
-  services.udisks2.enable = true;
+  services = {
+    gvfs.enable = true;
+    devmon.enable = true;
+    udisks2.enable = true;
+    blueman.enable = true;
+  };
   security.rtkit.enable = true;
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.package = pkgs.bluez;
-  services.blueman.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    bluetooth.package = pkgs.bluez;
 
-  hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = with pkgs; [
-    amdvlk
-  ];
+    opengl.enable = true;
+    opengl.extraPackages = with pkgs; [
+      amdvlk
+    ];
+  };
+
   # For 32 bit applications 
   # Only available on unstable
   hardware.opengl.extraPackages32 = with pkgs; [

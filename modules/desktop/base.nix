@@ -17,6 +17,7 @@
     "rust-rover"
     "webstorm"
     "zoom"
+    "zoom-us"
     "minecraft-launcher"
     "prismlauncher"
     "vscode"
@@ -119,7 +120,13 @@
     open-sans
   ];
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = let 
+
+    pythonEnv = pkgs.python312.withPackages (p: with p; [
+      pyserial
+    ]);
+
+  in with pkgs; [
     git # versioning tool
     vim # vim editor
     htop # resource monitor
@@ -147,7 +154,9 @@
     grim # screenshotting
     texlive.combined.scheme-full
     emacs
+    #unstable.zoom-us
     zoom-us
+    pythonEnv
 
     termusic # nice music player
     nix-output-monitor # fancy output  for nix build
@@ -184,7 +193,6 @@
     (pass.withExtensions (ext: with ext; [ pass-otp pass-import pass-genphrase pass-update pass-tomb ]))
     jdk17
     fontconfig
-    rustup
     ripgrep
 
     fenix.stable.completeToolchain

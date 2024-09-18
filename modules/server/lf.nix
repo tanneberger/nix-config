@@ -14,7 +14,22 @@
           locations = {
             "/" = {
               index = "index.html";
-              root = "${pkgs.lf-frontend}/html";
+              root = "${pkgs.lf-frontend-fsw24}/html";
+            };
+            "/websocket" = {
+              proxyPass = "http://127.0.0.1:8080";
+              proxyWebsockets = true;
+            };
+          };
+        };
+        "tcrs24.tanneberger.me" = {
+          enableACME = true;
+          forceSSL = true;
+          http2 = true;
+          locations = {
+            "/" = {
+              index = "index.html";
+              root = "${pkgs.lf-frontend-tcrs24}/html";
             };
             "/websocket" = {
               proxyPass = "http://127.0.0.1:8080";

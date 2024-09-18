@@ -22,6 +22,8 @@
   home.packages = with pkgs; [
     inxi # system information 
     gcc # gnu compiler collection
+    libgcc
+    gcovr
     nixpkgs-fmt # formatting for nix configs
     dmenu # menu stuff
     pamixer # cli sound mixer
@@ -96,13 +98,14 @@
     texlab
     #clang
 
-    rustup
+    #rustup
 
     # rust development
-    # cargo
-    # rustc
-    # clippy # linter and smell checker
-    # rustfmt # auto-formatter
+    #cargo
+    #rustc
+    rustup
+    #clippy # linter and smell checker
+    #rustfmt # auto-formatter
     gef
     # rust-analyzer
     # rust-analyzer-unwrapped
@@ -111,7 +114,6 @@
     aspell
     aspellDicts.de
     aspellDicts.en
-    python39
     # cpp development
     cmake
     #jetbrains.clion
@@ -134,6 +136,7 @@
     obsidian
     jdk17
     yarn
+    inkscape
     zotero
   ];
   programs.gpg = {
@@ -215,7 +218,7 @@
       # versioning program
       enable = true;
       userName = "tanneberger";
-      userEmail = "revol-xut@protonmail.com";
+      userEmail = "github@tanneberger.me";
 
       signing = {
         key = "91EBE87016391323642A6803B966009D57E69CC6";
