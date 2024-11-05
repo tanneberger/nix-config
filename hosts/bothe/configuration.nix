@@ -25,69 +25,40 @@
     zfs.requestEncryptionCredentials = true;
   };
 
-  #boot.kernel.sysctl."kernel.perf_event_paranoid" = 1;
-  hardware.enableRedistributableFirmware = true;
-
   nix = {
-    settings.cores = 0;
-    settings.max-jobs = 6;
-    buildMachines = [
-      /*{
-        hostName = "hydra.serv.zentralwerk.org";
-        sshUser = "root";
-        system = "x86_64-linux";
-        sshKey = "/home/revol-xut/.ssh/id_rsa";
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-        speedFactor = 5;
-        maxJobs = 10;
-      }
-      {
-        hostName = "server7.cluster.zentralwerk.org";
-        sshUser = "root";
-        system = "x86_64-linux";
-        sshKey = "/home/revol-xut/.ssh/id_rsa";
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-        speedFactor = 6;
-        maxJobs = 10;
-      }*/
-
-    ];
-
+    settings = {
+      cores = 0;
+      max-jobs = 6;
+    };
 
     distributedBuilds = true;
-    settings = {
-      sandbox = false;
-    };
     extraOptions = ''
       builders-use-substitutes = true
     '';
   };
+
   services = {
-    gvfs.enable = true;
-    devmon.enable = true;
     udisks2.enable = true;
     blueman.enable = true;
   };
+
   security.rtkit.enable = true;
 
   hardware = {
+    enableRedistributableFirmware = true;
     bluetooth.enable = true;
     bluetooth.package = pkgs.bluez;
 
-    opengl.enable = true;
-    opengl.extraPackages = with pkgs; [
-      amdvlk
-    ];
+    opengl = {
+      enable = true;
+      extraPackages = with pkgs; [
+        driversi686Linux.amdvlk
+        amdvlk
+      ];
+      driSupport = true;
+    };
   };
 
-  # For 32 bit applications 
-  # Only available on unstable
-  hardware.opengl.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
-  hardware.opengl.driSupport = true;
-  # For 32 bit applications
-  hardware.opengl.driSupport32Bit = true;
   zramSwap = {
     enable = true;
     algorithm = "zstd";
@@ -99,12 +70,13 @@
       RemainAfterExit = true;
     };
     script = ''
-      ${pkgs.coreutils-full}/bin/mount -m /dev/%i /media/revol-xut/%i
-      ${pkgs.coreutils-full}/bin/chown -R revol-xut /media/revol-xut/%i
+      ${pkgs.coreutils-full}/bin/mount -m /dev/%i /media/tanneberger/%i
+      ${pkgs.coreutils-full}/bin/chown -R revol-xut /media/tanneberger/%i
     '';
   };
 
   boot.binfmt.emulatedSystems = [ "riscv32-linux" ];
+
   services.udev.extraRules = ''
     # MCH2022 Badge
     SUBSYSTEM=="usb", ATTR{idVendor}=="16d0", ATTR{idProduct}=="0f9a", MODE="0666"
@@ -118,12 +90,6 @@
 
     KERNEL=="sd[a-z][0-9]", SUBSYSTEMS=="usb", ACTION=="add", RUN+="${pkgs.systemd}/bin/systemctl --no-block start usb-mount@%k.service" KERNEL=="sd[a-z][0-9]", SUBSYSTEMS=="usb", ACTION=="remove", RUN+="${pkgs.systemd}/bin/systemctl --no-block stop usb-mount@%k.service"
   '';
-  # 
-  # ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", RUN{program}+="${pkgs.systemd}/bin/systemd-mount --no-block --automount=yes --collect $devnode /media/revol-xut/ && ${pkgs.coreutils-full}/bin/chown -R revol-xut /media/revol-xut/"
-
-  #services.thinkfan = {
-  #  enable = true;
-  #};
 
   services.zfs = {
     autoSnapshot = {
@@ -140,6 +106,6 @@
 
   programs.nix-ld.enable = true;
 
-  system.stateVersion = "22.05"; # Did you read the comment?
+  system.stateVersion = "24.05";
 }
 

@@ -6,6 +6,4 @@
     #  enable = true;
     #};
   };
-
-  users.users.revol-xut.extraGroups = [ "docker" ];
 } 

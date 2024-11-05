@@ -1,14 +1,13 @@
 { config, pkgs, lib, ... }: {
 
   imports = [
-    ./dotfiles.nix
     ./neomutt.nix
   ];
-  home.username = "revol-xut";
-  home.homeDirectory = "/home/revol-xut";
-  home.stateVersion = "23.11";
+  home.username = "tanneberger";
+  home.homeDirectory = "/home/tanneberger";
+  home.stateVersion = "24.05";
 
-  # Allow clion as unfree packag
+  # Allow clion as unfree package
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "clion"
     "pycharm-community"
@@ -86,16 +85,11 @@
     tcpdump # watching netdevs
     mtr # better traceroute
     whois # whois tooling
-
     pciutils # checking connected pcidevices
     usbutils # lsusb
-
     rsync # file transfer
-    pure-prompt # fancy prompt
     wdisplays # configuring wayland displays
     texmaker
-    helix
-    texlab
     #clang
 
     #rustup
@@ -116,8 +110,6 @@
     aspellDicts.en
     # cpp development
     cmake
-    #jetbrains.clion
-
     inspectrum
     gqrx
     #jetbrains.clion
@@ -128,13 +120,8 @@
     rr
     #cgdb
 
-    spot
-    nodejs # for npm used by chatvm
-    nodePackages.prettier # for formatting
     terminus-nerdfont
     vscode
-    obsidian
-    jdk17
     yarn
     inkscape
     zotero
@@ -224,17 +211,6 @@
         key = "91EBE87016391323642A6803B966009D57E69CC6";
       };
     };
-    helix = {
-      enable = true;
-      settings = {
-        theme = "base16";
-        editor = {
-          line-number = "relative";
-          lsp.display-messages = true;
-        };
-      };
-    };
-
 
     zsh = {
       enable = true;
@@ -248,12 +224,6 @@
       history.save = 1000000;
       autocd = true;
       shellAliases = {
-        clion = "export _JAVA_AWT_WM_NONREPARENTING=1 && clion";
-        calcurse-caldav = "CALCURSE_CALDAV_PASSWORD=$(pass show radicale/revol-xut) calcurse-caldav";
-        calendar = "calcurse-caldav --init=keep-remote  && calcurse && calcurse-caldav --init=keep-local";
-        browser = "export USE_WOLFRAM_LD_LIBRARY_PATH=1 && export QT_XCB_GL_INTEGRATION=none && qutebrowser";
-        ccc-slack = "slack-term --config ~/.config/slack-term/ccc-config";
-        lf-slack = "slack-term --config ~/.config/slack-term/lf-lang-config";
         update = "sudo nixos-rebuild switch";
         update-full = "nix flake update && sudo nixos-rebuild switch";
         ga = "git add -A";
@@ -278,7 +248,7 @@
         zstyle :prompt:pure:git:branch color red
         prompt pure
 
-        export PNPM_HOME="/home/revol-xut/.local/share/pnpm"
+        export PNPM_HOME="/home/tanneberger/.local/share/pnpm"
         case ":$PATH:" in
           *":$PNPM_HOME:"*) ;;
           *) export PATH="$PNPM_HOME:$PATH" ;;

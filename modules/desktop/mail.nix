@@ -1,5 +1,6 @@
 { pkgs, config, ... }:
 let
+  user = "tanneberger";
   custom-mbsync-config = (pkgs.writeScriptBin "mbsync" ''
     IMAPAccount dd-ix
     AuthMechs Login
@@ -14,8 +15,8 @@ let
     Account dd-ix
 
     MaildirStore dd-ix-local
-    Inbox /home/revol-xut/Maildir/dd-ix/Inbox
-    Path /home/revol-xut/Maildir/dd-ix/
+    Inbox /home/${user}/Maildir/dd-ix/Inbox
+    Path /home/${user}/Maildir/dd-ix/
     SubFolders Verbatim
 
     Channel dd-ix
@@ -40,8 +41,8 @@ let
     Account ifsr
 
     MaildirStore ifsr-local
-    Inbox /home/revol-xut/Maildir/ifsr/Inbox
-    Path /home/revol-xut/Maildir/ifsr/
+    Inbox /home/${user}/Maildir/ifsr/Inbox
+    Path /home/${user}/Maildir/ifsr/
     SubFolders Verbatim
 
     Channel ifsr
@@ -66,8 +67,8 @@ let
     Account tu-dresden
 
     MaildirStore tu-dresden-local
-    Inbox /home/revol-xut/Maildir/tu-dresden/Inbox
-    Path /home/revol-xut/Maildir/tu-dresden/
+    Inbox /home/${user}/Maildir/tu-dresden/Inbox
+    Path /home/${user}/Maildir/tu-dresden/
     SubFolders Verbatim
 
     Channel tu-dresden
@@ -83,16 +84,16 @@ in
 {
   sops.secrets = {
     "tud-mail" = {
-      owner = "revol-xut";
+      owner = "${user}";
     };
     "ifsr-mail" = {
-      owner = "revol-xut";
+      owner = "${user}";
     };
     "c3d2-mail" = {
-      owner = "revol-xut";
+      owner = "${user}";
     };
     "dd-ix-mail" = {
-      owner = "revol-xut";
+      owner = "${user}";
     };
   };
 
@@ -146,14 +147,6 @@ in
         from = "tassilo.tanneberger@ifsr.de";
         user = "tassilo.tanneberger";
         passwordeval = "pass dfn/tassilo.tanneberger@ifsr.de | head -1";
-      };
-      c3d2 = {
-        auth = true;
-        host = "mail.c3d2.de";
-        port = 587;
-        from = "revol-xut@mail.c3d2.de";
-        user = "revol-xut";
-        passwordeval = "pass email/revol-xut@mail.c3d2.de | head -1";
       };
       dd-ix = {
         auth = true;
