@@ -1,0 +1,5 @@
+export EDITOR=nvim
+# export GPG_TTY=$(tty)
+#export PASSWORD_STORE_DIR=/home/revol-xut/.password-store
+#export GNUPGHOME=/home/revol-xut/.gnupg
+neomutt
