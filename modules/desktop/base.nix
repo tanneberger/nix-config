@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
-{
+let
+  berkeley-mono = pkgs.callPackage ../../pkgs/berkeley-mono.nix {};
+in {
   imports = [
     ./certs.nix
     ./pipewire.nix
@@ -83,9 +85,15 @@
     };
 
   };
+
   fonts = {
     fontconfig = {
       enable = true;
+      defaultFonts = {
+        #serif = [  "Liberation Serif" ];
+        #sansSerif = [ "Ubuntu" "Vazirmatn" ];
+        monospace = [ "Berkeley Mono Trial" ];
+      };
     };
     packages = with pkgs; [
       dejavu_fonts
@@ -93,6 +101,7 @@
       stix-two
       stix-otf
       open-sans
+      berkeley-mono
     ];
   };
 
@@ -136,9 +145,6 @@
       nix-output-monitor # fancy output  for nix build
 
       # different common fonts for icons 
-      dejavu_fonts
-      font-awesome
-      font-awesome_5
       unicode-emoji
       jetbrains.clion
       jetbrains.idea-ultimate

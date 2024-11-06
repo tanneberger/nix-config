@@ -1,18 +1,11 @@
 keys:
   - &revol-xut 91EBE87016391323642A6803B966009D57E69CC6
-  - &schroedinger age12ftu76knsr7utvshqrrvnfr3dwusq7kqjemt3rhr8l4ccfmu25lqc3cdl5
-  - &kirchhoff age13lljlr232yu97u2evt9efssrthzaa74xg6lsqp06c0pnq2f3tefs8pt6e4
+  - &bothe age1vw8k7hsj26rmm3aehcxpnue0m43stwlwhxdk5tzvw3zvuvxxcyaq233555
 creation_rules:
-  - path_regex: secrets/schroedinger\.yaml$
+  - path_regex: secrets/bothe\.yaml$
     key_groups:
     - pgp:
       - *revol-xut
       age:
-      - *schroedinger
-  - path_regex: secrets/kirchhoff\.yaml$
-    key_groups:
-    - pgp:
-      - *revol-xut
-      age:
-      - *kirchhoff
+      - *bothe
 

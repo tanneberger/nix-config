@@ -246,7 +246,7 @@
 
         # change the path color
         zstyle :prompt:pure:git:branch color red
-        prompt pure
+        prompt bart
 
         export PNPM_HOME="/home/tanneberger/.local/share/pnpm"
         case ":$PATH:" in

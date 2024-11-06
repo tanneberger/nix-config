@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
   ];
 
-  sops.defaultSopsFile = ../../secrets/kirchhoff.yaml;
+  sops.defaultSopsFile = ../../secrets/bothe.yaml;
 
   boot = {
     initrd.kernelModules = [ "amdgpu" "ext4" ];
