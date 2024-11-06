@@ -18,9 +18,7 @@
     "zoom-us"
     "prismlauncher"
     "vscode"
-    "obsidian"
     "discord"
-    "phpstorm"
   ];
 
   i18n.supportedLocales = [

@@ -20,7 +20,7 @@
       efi.canTouchEfiVariables = true;
     };
 
-    supportedFilesystems = [ "zfs" "ntfs" ];
+    supportedFilesystems = [ "zfs" ];
     zfs.devNodes = "/dev/";
     zfs.requestEncryptionCredentials = true;
   };
@@ -39,15 +39,12 @@
 
   services = {
     udisks2.enable = true;
-    blueman.enable = true;
   };
 
   security.rtkit.enable = true;
 
   hardware = {
     enableRedistributableFirmware = true;
-    bluetooth.enable = true;
-    bluetooth.package = pkgs.bluez;
 
     opengl = {
       enable = true;
@@ -71,11 +68,11 @@
     };
     script = ''
       ${pkgs.coreutils-full}/bin/mount -m /dev/%i /media/tanneberger/%i
-      ${pkgs.coreutils-full}/bin/chown -R revol-xut /media/tanneberger/%i
+      ${pkgs.coreutils-full}/bin/chown -R tanneberger /media/tanneberger/%i
     '';
   };
 
-  boot.binfmt.emulatedSystems = [ "riscv32-linux" ];
+  #boot.binfmt.emulatedSystems = [ "riscv32-linux" ];
 
   services.udev.extraRules = ''
     # MCH2022 Badge
@@ -94,17 +91,15 @@
   services.zfs = {
     autoSnapshot = {
       enable = true;
-      frequent = 4;
-      hourly = 6;
-      daily = 6;
-      weekly = 2;
+      frequent = 1;
+      hourly = 1;
+      daily = 1;
+      weekly = 1;
       monthly = 1;
     };
     autoScrub.enable = true;
     trim.enable = true;
   };
-
-  programs.nix-ld.enable = true;
 
   system.stateVersion = "24.05";
 }
