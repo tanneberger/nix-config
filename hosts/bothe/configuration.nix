@@ -52,7 +52,6 @@
         driversi686Linux.amdvlk
         amdvlk
       ];
-      driSupport = true;
     };
   };
 

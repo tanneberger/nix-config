@@ -78,6 +78,7 @@
             ./hosts/bothe/configuration.nix
             ./hosts/bothe/network.nix
             ./modules/desktop/wayland.nix
+            #./modules/desktop/gnome.nix
             ./modules/desktop/gnupg.nix
             ./modules/desktop/base.nix
             ./modules/server/sops.nix

@@ -7,6 +7,7 @@ in {
     ./pipewire.nix
     ./mail.nix
     ./docker.nix
+    ./udev.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -21,6 +22,7 @@ in {
     "prismlauncher"
     "vscode"
     "discord"
+    "steam-unwrapped"
   ];
 
   i18n.supportedLocales = [
@@ -53,7 +55,8 @@ in {
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   environment.sessionVariables = { GTK_THEME = "Adwaita:dark"; };
-
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [libelf];
   nix = {
     package = pkgs.nixVersions.latest;
     nixPath = [
@@ -90,8 +93,8 @@ in {
     fontconfig = {
       enable = true;
       defaultFonts = {
-        #serif = [  "Liberation Serif" ];
-        #sansSerif = [ "Ubuntu" "Vazirmatn" ];
+        serif = [  "Liberation Serif" ];
+        sansSerif = [ "Ubuntu" "Vazirmatn" ];
         monospace = [ "Berkeley Mono Trial" ];
       };
     };

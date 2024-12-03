@@ -148,9 +148,14 @@
       forwardAgent = true;
       enable = true; # ssh
       matchBlocks = {
-        "demo" = {
-          hostname = "192.168.178.69";
-          user = "demo";
+        "redneck" = {
+          hostname = "128.32.171.201";
+          user = "redneck";
+        };
+        "tanneberger" = {
+          hostname = "tanneberger.me";
+          user = "root";
+          forwardAgent = true;
         };
         "espresso" = {
           hostname = "espresso.ascii.coffee";
@@ -166,10 +171,6 @@
         };
         "kaki" = {
           hostname = "kaki.ifsr.de";
-          user = "root";
-        };
-        "tanneberger" = {
-          hostname = "tanneberger.me";
           user = "root";
         };
         "traffic-box-box" = {
