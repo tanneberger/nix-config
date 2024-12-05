@@ -23,6 +23,8 @@ in {
     "vscode"
     "discord"
     "steam-unwrapped"
+    "nrf-command-line-tools"
+    "segger-jlink"
   ];
 
   i18n.supportedLocales = [
@@ -143,6 +145,8 @@ in {
       emacs
       zoom-us
       pythonEnv
+      udiskie
+      nodejs
 
       termusic # nice music player
       nix-output-monitor # fancy output  for nix build

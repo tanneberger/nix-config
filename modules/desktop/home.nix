@@ -125,6 +125,7 @@
     yarn
     inkscape
     zotero
+    kicad
   ];
   programs.gpg = {
     enable = true;
