@@ -10,16 +10,12 @@ in
     enableOnBoot = true;
 
   };
+  users.users.lasr = {
+       isSystemUser = true;
+       group = "lasr";
+  };
 
-  /*systemd.services."routinator" = {
-    enable = true;
-    wantedBy = [ "multi-user.target" ];
-
-    script = ''
-      ${pkgs.aspa_routinator}/bin/routinator --config ${(config-file "routinator")} --no-rir-tals --extra-tals-dir="/var/lib/routinator/tals" server --http ${http-host}:${toString http-port} --rtr ${rtr-host}:${toString rtr-port}
-    '';
-  };*/
-
+  users.groups.lasr = {};
 
   services = {
     nginx = {
