@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   programs = {
-    xwayland.enable = true;
+    #xwayland.enable = true;
     sway = {
       enable = true;
       extraPackages = with pkgs; [
@@ -41,7 +41,22 @@
     #gtkUsePortal = true;
   #};
 
-  #environment.systemPackages = with pkgs; [
-  #  xdg-desktop-portal-wlr
-  #];
+  environment.systemPackages = with pkgs; [
+        swaylock-fancy
+        swaylock
+        swayidle
+        wl-clipboard
+        mako
+        alacritty
+        wofi
+        wofi-emoji
+        gnome.adwaita-icon-theme
+        i3status-rust
+        swayr
+        dmenu-wayland
+        xdg-desktop-portal-wlr
+        swayidle
+        xdg-utils   
+    #xdg-desktop-portal-wlr
+  ];
 }

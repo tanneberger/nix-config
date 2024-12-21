@@ -8,7 +8,7 @@
   ];
   nixpkgs.config.segger-jlink.acceptLicense = true;
   environment.systemPackages = with pkgs; [ 
-    nrf-command-line-tools
+    #nrf-command-line-tools
   ];
   services.udev.extraRules = (builtins.readFile ../../dotfiles/60-openocd.rules);
 }

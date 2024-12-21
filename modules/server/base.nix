@@ -8,6 +8,8 @@
   users.users.root = {
     openssh.authorizedKeys.keyFiles = [
       ../../keys/ssh/revol-xut
+      ../../keys/ssh/tassilo_gpg_1
+      ../../keys/ssh/tassilo_gpg_2
     ];
   };
 

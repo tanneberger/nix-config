@@ -109,6 +109,9 @@ in {
       berkeley-mono
     ];
   };
+  
+  # needed for gnome file viewer (nautilus)
+  services.gvfs.enable = true;
 
   environment.systemPackages =
     let
@@ -147,6 +150,7 @@ in {
       pythonEnv
       udiskie
       nodejs
+      ninja
 
       termusic # nice music player
       nix-output-monitor # fancy output  for nix build
@@ -178,6 +182,8 @@ in {
       fontconfig
       ripgrep
       fenix.stable.completeToolchain
+      nautilus
+      dolphin
     ];
 
   hardware = {
