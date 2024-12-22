@@ -210,7 +210,7 @@
       userEmail = "github@tanneberger.me";
 
       signing = {
-        key = "91EBE87016391323642A6803B966009D57E69CC6";
+        key = "410557B53AB36C5515BD4445B86AAA8C969B2351";
       };
     };
 
