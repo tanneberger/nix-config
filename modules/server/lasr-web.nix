@@ -11,11 +11,11 @@ in
 
   };
   users.users.lasr = {
-       isSystemUser = true;
-       group = "lasr";
+    isSystemUser = true;
+    group = "lasr";
   };
 
-  users.groups.lasr = {};
+  users.groups.lasr = { };
 
   services = {
     nginx = {

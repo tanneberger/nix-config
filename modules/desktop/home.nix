@@ -29,8 +29,8 @@
     mpc_cli # music player console version
     mpv # console music player
     paprefs # network audio 
-    pavucontrol # audio controll
-    okular # pdf viewer
+    pavucontrol # audio control
+    kdePackages.okular # pdf viewer
     feh # background and image viewer
     gnumake # makefiles
     arandr # x configuration
@@ -90,6 +90,7 @@
     rsync # file transfer
     wdisplays # configuring wayland displays
     texmaker
+    jetbrains.pycharm-community
     #clang
 
     #rustup
@@ -126,6 +127,9 @@
     inkscape
     zotero
     kicad
+    element-desktop
+    protobuf
+    obsidian
   ];
   programs.gpg = {
     enable = true;
@@ -169,6 +173,11 @@
           extraOptions = {
             "ProxyJump" = "root@espresso.ascii.coffee";
           };
+        };
+        "lasr" = {
+          hostname = "141.76.16.134";
+          user = "service";
+          proxyJump = "root@141.30.30.169";
         };
         "kaki" = {
           hostname = "kaki.ifsr.de";

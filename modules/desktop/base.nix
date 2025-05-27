@@ -1,7 +1,8 @@
 { config, pkgs, lib, ... }:
 let
-  berkeley-mono = pkgs.callPackage ../../pkgs/berkeley-mono.nix {};
-in {
+  berkeley-mono = pkgs.callPackage ../../pkgs/berkeley-mono.nix { };
+in
+{
   imports = [
     ./certs.nix
     ./pipewire.nix
@@ -25,6 +26,8 @@ in {
     "steam-unwrapped"
     "nrf-command-line-tools"
     "segger-jlink"
+    "saleae-logic"
+    "saleae-logic-2"
   ];
 
   i18n.supportedLocales = [
@@ -49,6 +52,7 @@ in {
       "docker"
       "vboxusers"
       "storage"
+      "qemu-libvirtd"
     ];
     initialPassword = "start_default_password_9#2";
     shell = pkgs.zsh;
@@ -58,7 +62,7 @@ in {
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   environment.sessionVariables = { GTK_THEME = "Adwaita:dark"; };
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [libelf];
+  programs.nix-ld.libraries = with pkgs; [ libelf ];
   nix = {
     package = pkgs.nixVersions.latest;
     nixPath = [
@@ -95,7 +99,7 @@ in {
     fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = [  "Liberation Serif" ];
+        serif = [ "Liberation Serif" ];
         sansSerif = [ "Ubuntu" "Vazirmatn" ];
         monospace = [ "Berkeley Mono Trial" ];
       };
@@ -109,7 +113,7 @@ in {
       berkeley-mono
     ];
   };
-  
+
   # needed for gnome file viewer (nautilus)
   services.gvfs.enable = true;
 
@@ -180,15 +184,31 @@ in {
       passExtensions.pass-update
       (pass.withExtensions (ext: with ext; [ pass-otp pass-import pass-genphrase pass-update pass-tomb ]))
       fontconfig
+      openjdk17-bootstrap
+      font-manager # this is required for the lf vscode extension to work
       ripgrep
       fenix.stable.completeToolchain
       nautilus
-      dolphin
+      kdePackages.dolphin
+      keepassxc
+      lutris
+      saleae-logic-2
+      qemu
+      verilator
+      sbt
+      scala-cli
     ];
 
   hardware = {
     hackrf.enable = true;
     rtl-sdr.enable = true;
+  };
+
+  virtualisation.libvirtd = {
+    qemu = {
+      package = pkgs.qemu_kvm; # only emulates host arch, smaller download
+      swtpm.enable = true; # allows for creating emulated TPM
+    };
   };
 
   environment.pathsToLink = [
@@ -218,5 +238,8 @@ in {
     enable = true;
     package = pkgs.firefox;
   };
+  services.blueman.enable = true;
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true;
 }
 

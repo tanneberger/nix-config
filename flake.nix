@@ -2,9 +2,9 @@
   description = "revol-xut's NixOS and Home Mananger configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
@@ -44,7 +44,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.11";
+      url = "github:nix-community/nixvim/nixos-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
@@ -57,8 +57,12 @@
       inputs.nixvim.follows = "nixvim";
       inputs.nixvim-stable.follows = "nixvim";
     };
+    shikane = {
+      url = "gitlab:w0lff/shikane";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, bahnbingo, poettering, microvm, website, lf, nvim, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, bahnbingo, poettering, microvm, website, lf, nvim, shikane, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -75,6 +79,7 @@
             sops-nix.nixosModules.sops
             nixos-hardware.nixosModules.framework-13-7040-amd
             c3d2-user-module.nixosModule
+            #shikane.nixosModule
             ./hosts/bothe/configuration.nix
             ./hosts/bothe/network.nix
             ./modules/desktop/wayland.nix

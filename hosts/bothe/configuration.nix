@@ -2,6 +2,7 @@
 
   imports = [
     ./hardware-configuration.nix
+    ./network.nix
   ];
 
   sops.defaultSopsFile = ../../secrets/bothe.yaml;
@@ -31,9 +32,11 @@
       max-jobs = 6;
     };
 
+
     distributedBuilds = true;
     extraOptions = ''
       builders-use-substitutes = true
+      extra-experimental-features = impure-derivations ca-derivations
     '';
   };
 
@@ -45,8 +48,7 @@
 
   hardware = {
     enableRedistributableFirmware = true;
-
-    opengl = {
+    graphics = {
       enable = true;
       extraPackages = with pkgs; [
         driversi686Linux.amdvlk
@@ -70,6 +72,8 @@
       ${pkgs.coreutils-full}/bin/chown -R tanneberger /media/tanneberger/%i
     '';
   };
+
+  hardware.flipperzero.enable = true;
 
   #boot.binfmt.emulatedSystems = [ "riscv32-linux" ];
 
