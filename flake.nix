@@ -39,10 +39,6 @@
       url = "github:tanneberger/website";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lf = {
-      url = "github:icyphy/satellite-attitude-control";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixvim = {
       url = "github:nix-community/nixvim/nixos-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,7 +58,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, bahnbingo, poettering, microvm, website, lf, nvim, shikane, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, bahnbingo, poettering, microvm, website, nvim, shikane, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -117,12 +113,10 @@
             ./modules/server/bahnbingo.nix
             ./modules/server/poettering.nix
             ./modules/server/website.nix
-            ./modules/server/lf.nix
             ./modules/server/lasr-web.nix
             sops-nix.nixosModules.sops
             bahnbingo.nixosModules.default
             microvm.nixosModules.host
-            lf.nixosModules.default
             {
               nixpkgs.overlays = [
                 bahnbingo.overlays.default
@@ -130,7 +124,6 @@
                   poettering = poettering;
                 })
                 website.overlays.default
-                lf.overlays.default
               ];
               microvm.autostart = [
                 "nextcloud-vm"
