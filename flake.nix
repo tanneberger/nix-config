@@ -113,7 +113,6 @@
             ./modules/server/bahnbingo.nix
             ./modules/server/poettering.nix
             ./modules/server/website.nix
-            ./modules/server/lasr-web.nix
             sops-nix.nixosModules.sops
             bahnbingo.nixosModules.default
             microvm.nixosModules.host

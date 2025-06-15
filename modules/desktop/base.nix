@@ -197,6 +197,8 @@ in
       verilator
       sbt
       scala-cli
+      scala 
+      mill
     ];
 
   hardware = {
