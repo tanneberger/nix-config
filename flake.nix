@@ -57,8 +57,12 @@
       url = "gitlab:w0lff/shikane";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rtrlab = {
+      url = "github:tanneberger/rtrlab";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, bahnbingo, poettering, microvm, website, nvim, shikane, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, fenix, c3d2-user-module, bahnbingo, poettering, microvm, website, nvim, shikane, rtrlab, ... }@inputs:
     let
       buildSystem = nixpkgs.lib.nixosSystem;
     in
@@ -116,12 +120,14 @@
             sops-nix.nixosModules.sops
             bahnbingo.nixosModules.default
             microvm.nixosModules.host
+            rtrlab.nixosModules.default
             {
               nixpkgs.overlays = [
                 bahnbingo.overlays.default
                 (_final: _prev: {
                   poettering = poettering;
                 })
+                rtrlab.overlays.default
                 website.overlays.default
               ];
               microvm.autostart = [
