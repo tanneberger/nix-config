@@ -6,7 +6,6 @@ in
   imports = [
     ./certs.nix
     ./pipewire.nix
-    ./mail.nix
     ./docker.nix
     ./udev.nix
   ];

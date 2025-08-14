@@ -17,17 +17,6 @@ block = "temperature"
 block = "battery"
 
 [[block]]
-block = "maildir"
-interval = 1
-inboxes = [ "/home/revol-xut/Maildir/tu-dresden/Inbox", "/home/revol-xut/Maildir/ifsr/Inbox" ]
-threshold_warning = 1
-threshold_critical = 10
-display_type = "new"
-[[block.click]]
-button = "left"
-cmd = "alacritty -e /home/revol-xut/.config/sway/lauch_neomutt"
-
-[[block]]
 block = "disk_space"
 path = "/"
 info_type = "available"

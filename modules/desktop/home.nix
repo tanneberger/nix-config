@@ -1,8 +1,4 @@
 { config, pkgs, lib, ... }: {
-
-  imports = [
-    ./neomutt.nix
-  ];
   home.username = "tanneberger";
   home.homeDirectory = "/home/tanneberger";
   home.stateVersion = "24.05";
@@ -210,7 +206,6 @@
         };
       };
     };
-    neomutt.enable = true; # mail client
 
     git = {
       # versioning program
