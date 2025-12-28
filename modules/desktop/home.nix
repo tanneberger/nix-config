@@ -22,7 +22,7 @@
     nixpkgs-fmt # formatting for nix configs
     dmenu # menu stuff
     pamixer # cli sound mixer
-    mpc_cli # music player console version
+    mpc # music player console version
     mpv # console music player
     paprefs # network audio 
     pavucontrol # audio control
@@ -46,7 +46,7 @@
     calcurse # calender tool
     btop # improved htop
     qutebrowser # superiour vim browser
-    tdesktop # normal telegram desktop
+    telegram-desktop # normal telegram desktop
     # pdfpc # tool for presentations TODO: borked
     #lynx # text based browser
     gopher # very nice 1900s protocoll
@@ -109,23 +109,25 @@
     cmake
     inspectrum
     gqrx
-    #jetbrains.clion
-    #jetbrains.pycharm-community
-    #cpplint
-    #llvm
+    jdk17_headless
     gdb
     rr
-    #cgdb
-
-    terminus-nerdfont
+    nerd-fonts.terminess-ttf
+    departure-mono
+    cm_unicode # Computer Modern
     vscode
     yarn
     inkscape
     zotero
     kicad
+    freecad
     element-desktop
     protobuf
     obsidian
+    libreoffice
+    qgis
+    wget
+    prismlauncher
   ];
   programs.gpg = {
     enable = true;

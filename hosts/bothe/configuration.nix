@@ -50,10 +50,6 @@
     enableRedistributableFirmware = true;
     graphics = {
       enable = true;
-      extraPackages = with pkgs; [
-        driversi686Linux.amdvlk
-        amdvlk
-      ];
     };
   };
 

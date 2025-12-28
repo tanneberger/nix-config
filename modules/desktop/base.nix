@@ -98,9 +98,9 @@ in
     fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = [ "Liberation Serif" ];
-        sansSerif = [ "Ubuntu" "Vazirmatn" ];
-        monospace = [ "Berkeley Mono Trial" ];
+        serif = [ "Computer Modern" ];
+        sansSerif = [ "Ubuntu" ];
+        monospace = [ "Departure Mono" ];
       };
     };
     packages = with pkgs; [
@@ -110,6 +110,7 @@ in
       stix-otf
       open-sans
       berkeley-mono
+      noto-fonts
     ];
   };
 
@@ -129,14 +130,13 @@ in
       acpi # battery stuff
       home-manager # managing homespace and user software
       alsa-utils # audio control
-      pinentry # password entry window required for gpg
+      pinentry-gnome3 # password entry window required for gpg
       dconf # required by paprefs
       nix-index # indexing nix packages
       mpd # music player daemon
       openssl
       libtool
       glibc
-      libsForQt5.kcachegrind
       steam # gaming
       prusa-slicer
       gqrx # radio tooling
@@ -198,6 +198,8 @@ in
       scala-cli
       scala 
       mill
+      wofi
+      wl-clipboard
     ];
 
   hardware = {
@@ -225,6 +227,7 @@ in
       enable = true;
       interactiveShellInit = ''eval "$(direnv hook zsh)"'';
     };
+    vim.enable = true;
     vim.defaultEditor = true;
     neovim = {
       viAlias = true;

@@ -79,7 +79,7 @@
       })
 
       mako
-      rofi-wayland
+      rofi
       rofi-rbw
       eog
       libnotify
